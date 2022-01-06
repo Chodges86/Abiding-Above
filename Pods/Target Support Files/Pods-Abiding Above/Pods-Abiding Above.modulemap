@@ -1,0 +1,6 @@
+framework module Pods_Abiding_Above {
+  umbrella header "Pods-Abiding Above-umbrella.h"
+
+  export *
+  module * { export * }
+}

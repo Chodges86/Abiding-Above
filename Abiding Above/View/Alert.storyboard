@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Y6W-OH-hqX">
+    <device id="retina5_5" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Alert View Controller-->
+        <scene sceneID="s0d-6b-0kx">
+            <objects>
+                <viewController storyboardIdentifier="AlertVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Y6W-OH-hqX" customClass="AlertViewController" customModule="Abiding_Above" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="5EZ-qb-Rvc">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aYI-EQ-EJB">
+                                <rect key="frame" x="40" y="685.66666666666663" width="334" height="30.333333333333371"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PjI-zp-I30">
+                                        <rect key="frame" x="274" y="-9.6666666666666288" width="50" height="50"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="50" id="6MU-Ri-TDO"/>
+                                            <constraint firstAttribute="width" constant="50" id="VL1-D3-wpz"/>
+                                        </constraints>
+                                        <state key="normal" title="OK"/>
+                                        <connections>
+                                            <action selector="actionButtonTapped:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="epG-Ve-DDx"/>
+                                        </connections>
+                                    </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XLk-Q9-FSp">
+                                        <rect key="frame" x="10" y="5" width="259" height="20.333333333333332"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstItem="XLk-Q9-FSp" firstAttribute="top" secondItem="aYI-EQ-EJB" secondAttribute="top" constant="5" id="08K-p7-JJ1"/>
+                                    <constraint firstItem="XLk-Q9-FSp" firstAttribute="leading" secondItem="aYI-EQ-EJB" secondAttribute="leading" constant="10" id="Hvy-wC-x95"/>
+                                    <constraint firstAttribute="bottom" secondItem="XLk-Q9-FSp" secondAttribute="bottom" constant="5" id="Kwe-Au-20C"/>
+                                    <constraint firstAttribute="trailing" secondItem="PjI-zp-I30" secondAttribute="trailing" constant="10" id="fht-im-NG0"/>
+                                    <constraint firstItem="PjI-zp-I30" firstAttribute="centerY" secondItem="aYI-EQ-EJB" secondAttribute="centerY" id="ft4-Bj-bq1"/>
+                                    <constraint firstItem="PjI-zp-I30" firstAttribute="leading" secondItem="XLk-Q9-FSp" secondAttribute="trailing" constant="5" id="fw2-KX-DDl"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.34999999999999998" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="aYI-EQ-EJB" secondAttribute="trailing" constant="40" id="3hr-nq-yJe"/>
+                            <constraint firstItem="aYI-EQ-EJB" firstAttribute="centerX" secondItem="5EZ-qb-Rvc" secondAttribute="centerX" id="Yfy-vD-9Aa"/>
+                            <constraint firstItem="aYI-EQ-EJB" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="40" id="voL-Qe-0go"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="bottom" secondItem="aYI-EQ-EJB" secondAttribute="bottom" constant="20" id="yKU-Js-GNC"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="actionButton" destination="PjI-zp-I30" id="54q-9c-kgh"/>
+                        <outlet property="alertLabel" destination="XLk-Q9-FSp" id="6Ym-O5-UVo"/>
+                        <outlet property="alertView" destination="aYI-EQ-EJB" id="cyR-NI-aae"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-28" y="35"/>
+        </scene>
+    </scenes>
+    <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>
