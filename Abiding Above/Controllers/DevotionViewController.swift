@@ -15,7 +15,6 @@ class DevotionViewController: UIViewController {
     @IBOutlet weak var devLabel: UILabel!
     
     var devModel = DevotionsModel()
-    var bibleModel = BibleModel()
     var date: String? 
     
     override func viewDidLoad() {
@@ -27,6 +26,10 @@ class DevotionViewController: UIViewController {
             devModel.getDevotion(date)
             tabBarController?.tabBar.isHidden = true
         }
+    }
+    override func viewWillAppear(_ animated: Bool) {
+        navigationController?.navigationBar.tintColor = .systemBlue
+
     }
     
     @IBAction func verseTapped(_ sender: UIButton) {
@@ -54,12 +57,12 @@ extension DevotionViewController: DevotionDelegate {
         }
     }
     
-    func didRecieveDevotion(devotion: Devotion) {
+    func didRecieveDevotions(devotion: [Devotion]) {
         DispatchQueue.main.async {
             // Devotion received and placed into view 
-            self.titleLabel.text = devotion.title
-            self.verseButton.setTitle(devotion.verse, for: .normal)
-            self.devLabel.text = devotion.body
+            self.titleLabel.text = devotion[0].title
+            self.verseButton.setTitle(devotion[0].verse, for: .normal)
+            self.devLabel.text = devotion[0].body
         }
     }
 }

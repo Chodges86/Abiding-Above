@@ -254,10 +254,10 @@
             </objects>
             <point key="canvasLocation" x="-1078" y="900"/>
         </scene>
-        <!--Search Topic View Controller-->
+        <!--Search View Controller-->
         <scene sceneID="XrQ-EC-mZA">
             <objects>
-                <viewController id="2kw-YL-d3F" customClass="SearchTopicViewController" customModule="Abiding_Above" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="2kw-YL-d3F" customClass="SearchViewController" customModule="Abiding_Above" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="clD-o2-Br8">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -291,6 +291,7 @@
                     <navigationItem key="navigationItem" id="u5l-Zv-Gec"/>
                     <connections>
                         <outlet property="topicTableView" destination="MHr-ys-RhY" id="2r4-ED-G6Z"/>
+                        <segue destination="maz-ra-tQA" kind="show" identifier="SearchDevSegue" id="BHC-8w-JIY"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qFd-UB-zsY" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -337,22 +338,22 @@
                                             <action selector="todayDevPressed:" destination="mlz-Vz-dcW" eventType="touchUpInside" id="9Iw-CB-WaA"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dPR-gw-Rm8" userLabel="Search Title">
+                                    <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dPR-gw-Rm8" userLabel="Search Title">
                                         <rect key="frame" x="0.0" y="65" width="238.66666666666666" height="55"/>
                                         <state key="normal" image="Search Title Button">
                                             <color key="titleColor" red="0.40621235970000003" green="0.54521197079999995" blue="0.74455755950000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </state>
                                         <connections>
-                                            <action selector="searchTitlePressed:" destination="mlz-Vz-dcW" eventType="touchUpInside" id="uqd-9Q-7QK"/>
+                                            <action selector="searchButtonPressed:" destination="mlz-Vz-dcW" eventType="touchUpInside" id="Y6e-MI-6Ip"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="paL-Ct-0Yw" userLabel="Search Topic">
+                                    <button opaque="NO" tag="2" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="paL-Ct-0Yw" userLabel="Search Topic">
                                         <rect key="frame" x="0.0" y="130" width="238.66666666666666" height="55"/>
                                         <state key="normal" image="Search Topic Button">
                                             <color key="titleColor" red="0.26109582190000002" green="0.46202963590000001" blue="0.69041299820000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </state>
                                         <connections>
-                                            <action selector="searchTopicPressed:" destination="mlz-Vz-dcW" eventType="touchUpInside" id="ECq-vV-Dwz"/>
+                                            <action selector="searchButtonPressed:" destination="mlz-Vz-dcW" eventType="touchUpInside" id="5Zt-hE-2KD"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -558,6 +559,9 @@
             <point key="canvasLocation" x="490" y="-1276"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="BHC-8w-JIY"/>
+    </inferredMetricsTieBreakers>
     <resources>
         <image name="Audio Video button" width="85" height="44"/>
         <image name="Daily Devotion button" width="73" height="40"/>

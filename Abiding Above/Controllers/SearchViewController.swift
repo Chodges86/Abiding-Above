@@ -7,13 +7,16 @@
 
 import UIKit
 
-class SearchTopicViewController: UIViewController {
+class SearchViewController: UIViewController {
     
     @IBOutlet weak var topicTableView: UITableView!
     
+    var devModel = DevotionsModel()
     
-    let exampleArray = ["Marriage", "Leadership", "Love", "Forgiveness", "Apologetics", "Pride"]
     
+    var devotions = [Devotion]()
+    var topics = [String]()
+    var searchMode:SearchMode?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,29 +27,82 @@ class SearchTopicViewController: UIViewController {
         topicTableView.backgroundColor = .clear
         topicTableView.separatorStyle = .none
         
-
-        tabBarController?.tabBar.isHidden = true
-        navigationController?.navigationBar.tintColor = .white
+        devModel.delegate = self
+        devModel.getAllDevotions()
         
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        tabBarController?.tabBar.isHidden = true
+        navigationController?.navigationBar.tintColor = .white
+    }
 }
 
-extension SearchTopicViewController: UITableViewDelegate, UITableViewDataSource {
+extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return exampleArray.count
+        switch searchMode {
+        case .title:
+            return devotions.count
+        case .topic:
+            return topics.count
+        default:
+            return devotions.count
+        }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = topicTableView.dequeueReusableCell(withIdentifier: "topicCell") as! TopicCell
-        cell.topicLabel.text = exampleArray[indexPath.row]
+        switch searchMode {
+        case .title:
+            cell.topicLabel.text = devotions[indexPath.row].title
+        case .topic:
+            cell.topicLabel.text = topics[indexPath.row]
+        default:
+            break
+        }
         return cell
         
     }
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return CGFloat(75)
     }
-//    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//
-//    }
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        //TODO: Setup the cell so that clicking on it presents the DevotionViewController with the selected devotion (and setup so that cell is not highlighted)
+        let cell = topicTableView.cellForRow(at: indexPath) as? TopicCell
+        
+        switch searchMode {
+        case .title:
+            if let title = cell?.topicLabel.text {
+                devModel.getDevotionbyTitle(title)
+            }
+            performSegue(withIdentifier: "SearchDevSegue", sender: self)
+        case .topic:
+            // Setup getting a list of devotions from the selected topic
+            break
+        default:
+            break
+        }
+    }
+}
+
+extension SearchViewController: DevotionDelegate {
+    func didRecieveDevotions(devotion: [Devotion]) {
+        switch searchMode {
+        case .title:
+            devotions = devotion
+            topicTableView.reloadData()
+        case .topic:
+            topics = devModel.getAllTopics(devotion)
+            topicTableView.reloadData()
+        default:
+            break
+        }
+    }
+
+    func didRecieveError(error: String?) {
+        // Handle error
+    }
+    
+    
+    
 }
