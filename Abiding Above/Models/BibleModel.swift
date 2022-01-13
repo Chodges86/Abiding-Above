@@ -89,7 +89,7 @@ struct BibleModel {
         dateFormatter.dateFormat = "dd"
         let dayOfMonth = dateFormatter.string(from: date)
         if let dayOfMonth = Int(dayOfMonth) {
-            print(verse[dayOfMonth - 1])
+            //print(verse[dayOfMonth - 1])
             
             // Return the verse reference at the index matching today's day of month
             return verse[dayOfMonth - 1]

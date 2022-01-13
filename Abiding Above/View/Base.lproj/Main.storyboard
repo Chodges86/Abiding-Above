@@ -247,17 +247,17 @@
                         <outlet property="devLabel" destination="SH0-ph-Rzv" id="6WU-lG-3J8"/>
                         <outlet property="titleLabel" destination="73D-rg-qun" id="XPr-OZ-jLG"/>
                         <outlet property="verseButton" destination="XO9-cT-NVN" id="ypi-2O-5y1"/>
-                        <segue destination="OCR-Xw-7y6" kind="presentation" identifier="verseSegue" id="2aX-a4-2ts"/>
+                        <segue destination="OCR-Xw-7y6" kind="presentation" identifier="VerseSegue" id="2aX-a4-2ts"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="S9n-2m-HUd" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-1078" y="900"/>
         </scene>
-        <!--Search Topic View Controller-->
+        <!--Search View Controller-->
         <scene sceneID="XrQ-EC-mZA">
             <objects>
-                <viewController id="2kw-YL-d3F" customClass="SearchTopicViewController" customModule="Abiding_Above" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="2kw-YL-d3F" customClass="SearchViewController" customModule="Abiding_Above" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="clD-o2-Br8">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -291,6 +291,7 @@
                     <navigationItem key="navigationItem" id="u5l-Zv-Gec"/>
                     <connections>
                         <outlet property="topicTableView" destination="MHr-ys-RhY" id="2r4-ED-G6Z"/>
+                        <segue destination="maz-ra-tQA" kind="show" identifier="SearchSegue" id="gst-3u-UvF"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qFd-UB-zsY" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -558,6 +559,9 @@
             <point key="canvasLocation" x="490" y="-1276"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="gst-3u-UvF"/>
+    </inferredMetricsTieBreakers>
     <resources>
         <image name="Audio Video button" width="85" height="44"/>
         <image name="Daily Devotion button" width="73" height="40"/>
