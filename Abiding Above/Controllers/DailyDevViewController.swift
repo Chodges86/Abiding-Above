@@ -28,6 +28,7 @@ class DailyDevViewController: UIViewController {
     }
     
     @IBAction func todayDevPressed(_ sender: UIButton) {
+        searchMode = .today
         performSegue(withIdentifier: "DevSegue", sender: self)
     }
     

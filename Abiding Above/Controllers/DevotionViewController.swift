@@ -22,9 +22,16 @@ class DevotionViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-                
+        
+        devModel.singleDevDelegate = self
+        
         if let devotion = devotion {
             displayDevotion(devotion)
+        }
+        if searchMode == .today {
+            if let date = date {
+                devModel.getDevotion(date)
+            }
         }
        
     }

@@ -50,6 +50,8 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
             return allDevotions.count
         case .topic:
             return topics.count
+        case .today:
+            return 0
         }
     }
     
@@ -60,6 +62,8 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
             cell.topicLabel.text = allDevotions[indexPath.row].title
         case .topic:
             cell.topicLabel.text = topics[indexPath.row]
+        case .today:
+            break
         }
         return cell
         
@@ -85,6 +89,7 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
             allDevotions = newDevotions
             searchMode = .title
             topicTableView.reloadData()
+        case .today:
             break
         }
     }

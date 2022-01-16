@@ -19,6 +19,7 @@ class NewsletterViewController: UIViewController, WKNavigationDelegate {
         webView.navigationDelegate = self
         view = webView
         
+        
         // TODO: Setup loading icon on the screen when waiting for webpage to load
     }
     

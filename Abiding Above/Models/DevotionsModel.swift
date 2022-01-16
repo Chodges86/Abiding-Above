@@ -11,6 +11,7 @@ import Firebase
 enum SearchMode {
     case title
     case topic
+    case today
 }
 var searchMode:SearchMode = .title
 
@@ -59,30 +60,27 @@ struct DevotionsModel {
     // Gets the devotion from Firestore based on document name which is the date as a String
     func getDevotion(_ date: String) {
         
-        let docRef = db.collection(K.DevotionConstants.devotionCollection).document(date)
-        docRef.getDocument { (document, error) in
-            if let document = document, document.exists {
-                if let data = document.data(){
-                    if let date = data["date"] as? String,
-                       let title = data["title"] as? String,
-                       let verse = data["verse"] as? String,
-                       let body = data["devotion"] as? String,
-                       let topic = data["topic"] as? [String] {
-                        
-                        let selectedDevotion = Devotion(date: date, title: title, verse: verse, body: body, topic: topic)
-                        
-                        singleDevDelegate?.didRecieveDevotion(devotion: selectedDevotion)
-                    }
-                }
-            } else {
-                print("Document does not exist")
-                if error != nil {
-                    singleDevDelegate?.didRecieveError(error: "There was an error retrieving the devotion from the database. \(error!)")
+        var devotions:[Devotion] = []
+        
+        db.collection("devotions").whereField("date", isEqualTo: date)
+            .getDocuments() { (querySnapshot, error) in
+                if let error = error {
+                    print("Error getting documents: \(error)")
                 } else {
-                    singleDevDelegate?.didRecieveError(error: "There was an error retrieving the devotion from the database. Unknown error")
+                    for document in querySnapshot!.documents {
+                        let data = document.data()
+                       if let date = data["date"] as? String,
+                        let title = data["title"] as? String,
+                        let verse = data["verse"] as? String,
+                        let body = data["devotion"] as? String,
+                        let topic = data["topic"] as? [String] {
+                        
+                        let devotion = Devotion(date: date, title: title, verse: verse, body: body, topic: topic)
+                        devotions.append(devotion)
+                       }
+                    }
+                    singleDevDelegate?.didRecieveDevotion(devotion: devotions[0])
                 }
-                
-            }
         }
     }  // End of getDevotion function
     
