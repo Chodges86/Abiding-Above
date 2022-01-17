@@ -12,14 +12,22 @@ class SearchViewController: UIViewController {
     @IBOutlet weak var topicTableView: UITableView!
     
     var devModel = DevotionsModel()
+    let devVC = DevotionViewController()
     
-    
-    var devotions = [Devotion]()
+    var allDevotions: [Devotion] = []
+    var indexOfSelectedDev:Int = 0
     var topics = [String]()
-    var searchMode:SearchMode?
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        devModel.allDevDelegate = self
+        devModel.getAllDevotions()
+        
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
         
         topicTableView.dataSource = self
         topicTableView.delegate = self
@@ -27,26 +35,23 @@ class SearchViewController: UIViewController {
         topicTableView.backgroundColor = .clear
         topicTableView.separatorStyle = .none
         
-        devModel.delegate = self
-        devModel.getAllDevotions()
-        
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
+
         tabBarController?.tabBar.isHidden = true
         navigationController?.navigationBar.tintColor = .white
     }
+    
+   
 }
 
 extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         switch searchMode {
         case .title:
-            return devotions.count
+            return allDevotions.count
         case .topic:
             return topics.count
-        default:
-            return devotions.count
+        case .today:
+            return 0
         }
     }
     
@@ -54,55 +59,71 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
         let cell = topicTableView.dequeueReusableCell(withIdentifier: "topicCell") as! TopicCell
         switch searchMode {
         case .title:
-            cell.topicLabel.text = devotions[indexPath.row].title
+            cell.topicLabel.text = allDevotions[indexPath.row].title
         case .topic:
             cell.topicLabel.text = topics[indexPath.row]
-        default:
+        case .today:
             break
         }
         return cell
         
+        
     }
+    
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return CGFloat(75)
     }
+    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        //TODO: Setup the cell so that clicking on it presents the DevotionViewController with the selected devotion (and setup so that cell is not highlighted)
-        let cell = topicTableView.cellForRow(at: indexPath) as? TopicCell
-        
         switch searchMode {
         case .title:
-            if let title = cell?.topicLabel.text {
-                devModel.getDevotionbyTitle(title)
+            indexOfSelectedDev = Int(indexPath.row)
+            performSegue(withIdentifier: "SearchSegue", sender: self)
+        case .topic:
+            var newDevotions:[Devotion] = []
+            for devotion in allDevotions {
+                if devotion.topic.contains(topics[Int(indexPath.row)]) {
+                    newDevotions.append(devotion)
+                }
             }
-            performSegue(withIdentifier: "SearchDevSegue", sender: self)
-        case .topic:
-            // Setup getting a list of devotions from the selected topic
-            break
-        default:
+            allDevotions = newDevotions
+            searchMode = .title
+            topicTableView.reloadData()
+        case .today:
             break
         }
     }
-}
-
-extension SearchViewController: DevotionDelegate {
-    func didRecieveDevotions(devotion: [Devotion]) {
-        switch searchMode {
-        case .title:
-            devotions = devotion
-            topicTableView.reloadData()
-        case .topic:
-            topics = devModel.getAllTopics(devotion)
-            topicTableView.reloadData()
-        default:
-            break
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        if segue.identifier == "SearchSegue" {
+            let destVC = segue.destination as? DevotionViewController
+            destVC?.devotion = allDevotions[indexOfSelectedDev]
+            
         }
-    }
-
-    func didRecieveError(error: String?) {
-        // Handle error
     }
     
+}
+
+extension SearchViewController: AllDevotionsDelegate {
+    func didReceiveAllDevotions(devotions: [Devotion]) {
+        allDevotions = devotions
+        
+        // Reduce topics down so that only one topic of each is shown
+        var topicSet:Set<String> = []
+        for devotion in devotions {
+            for topic in devotion.topic {
+                topicSet.insert(topic)
+            }
+        }
+        
+        topics.append(contentsOf: topicSet)
+        topicTableView.reloadData()
+    }
+    
+    func didRecieveError(error: String?) {
+        // TODO: Handle error
+        print("error receiving devotions from database")
+    }
     
     
 }

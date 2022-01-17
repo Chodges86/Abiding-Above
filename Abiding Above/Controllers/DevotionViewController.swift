@@ -9,32 +9,49 @@ import UIKit
 
 class DevotionViewController: UIViewController {
     
+    var devModel = DevotionsModel()
+    var bibleModel = BibleModel()
+    var date: String?
+    var devotion: Devotion?
     
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var verseButton: UIButton!
     @IBOutlet weak var devLabel: UILabel!
     
-    var devModel = DevotionsModel()
-    var date: String? 
+   
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        devModel.delegate = self
-        if let date = date {
-            // Kickoff the getDevotion function to get a Devotion from Firestore database
-            devModel.getDevotion(date)
-            tabBarController?.tabBar.isHidden = true
+        devModel.singleDevDelegate = self
+        
+        if let devotion = devotion {
+            displayDevotion(devotion)
         }
+        if searchMode == .today {
+            if let date = date {
+                devModel.getDevotion(date)
+            }
+        }
+       
     }
+    
     override func viewWillAppear(_ animated: Bool) {
+        tabBarController?.tabBar.isHidden = true
         navigationController?.navigationBar.tintColor = .systemBlue
+    }
+    
+    func displayDevotion(_ devotion: Devotion) {
+        
+            self.titleLabel.text = devotion.title
+            self.verseButton.setTitle(devotion.verse, for: .normal)
+            self.devLabel.text = devotion.body
 
     }
     
     @IBAction func verseTapped(_ sender: UIButton) {
         
-        performSegue(withIdentifier: "verseSegue", sender: nil)
+        performSegue(withIdentifier: "VerseSegue", sender: nil)
         
     }
     
@@ -48,7 +65,7 @@ class DevotionViewController: UIViewController {
 }
 
 // MARK: - Devotion Delegate Protocols
-extension DevotionViewController: DevotionDelegate {
+extension DevotionViewController: SingleDevotionDelegate {
     func didRecieveError(error: String?) {
         if error != nil {
             let alertService = AlertService()
@@ -57,12 +74,10 @@ extension DevotionViewController: DevotionDelegate {
         }
     }
     
-    func didRecieveDevotions(devotion: [Devotion]) {
+    func didRecieveDevotion(devotion: Devotion) {
         DispatchQueue.main.async {
-            // Devotion received and placed into view 
-            self.titleLabel.text = devotion[0].title
-            self.verseButton.setTitle(devotion[0].verse, for: .normal)
-            self.devLabel.text = devotion[0].body
+            // Devotion received and placed into view
+            self.displayDevotion(devotion)
         }
     }
 }

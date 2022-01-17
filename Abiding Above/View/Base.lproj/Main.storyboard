@@ -247,7 +247,7 @@
                         <outlet property="devLabel" destination="SH0-ph-Rzv" id="6WU-lG-3J8"/>
                         <outlet property="titleLabel" destination="73D-rg-qun" id="XPr-OZ-jLG"/>
                         <outlet property="verseButton" destination="XO9-cT-NVN" id="ypi-2O-5y1"/>
-                        <segue destination="OCR-Xw-7y6" kind="presentation" identifier="verseSegue" id="2aX-a4-2ts"/>
+                        <segue destination="OCR-Xw-7y6" kind="presentation" identifier="VerseSegue" id="2aX-a4-2ts"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="S9n-2m-HUd" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -291,7 +291,7 @@
                     <navigationItem key="navigationItem" id="u5l-Zv-Gec"/>
                     <connections>
                         <outlet property="topicTableView" destination="MHr-ys-RhY" id="2r4-ED-G6Z"/>
-                        <segue destination="maz-ra-tQA" kind="show" identifier="SearchDevSegue" id="BHC-8w-JIY"/>
+                        <segue destination="maz-ra-tQA" kind="show" identifier="SearchSegue" id="gst-3u-UvF"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qFd-UB-zsY" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -338,22 +338,22 @@
                                             <action selector="todayDevPressed:" destination="mlz-Vz-dcW" eventType="touchUpInside" id="9Iw-CB-WaA"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dPR-gw-Rm8" userLabel="Search Title">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dPR-gw-Rm8" userLabel="Search Title">
                                         <rect key="frame" x="0.0" y="65" width="238.66666666666666" height="55"/>
                                         <state key="normal" image="Search Title Button">
                                             <color key="titleColor" red="0.40621235970000003" green="0.54521197079999995" blue="0.74455755950000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </state>
                                         <connections>
-                                            <action selector="searchButtonPressed:" destination="mlz-Vz-dcW" eventType="touchUpInside" id="Y6e-MI-6Ip"/>
+                                            <action selector="searchTitlePressed:" destination="mlz-Vz-dcW" eventType="touchUpInside" id="uqd-9Q-7QK"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" tag="2" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="paL-Ct-0Yw" userLabel="Search Topic">
+                                    <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="paL-Ct-0Yw" userLabel="Search Topic">
                                         <rect key="frame" x="0.0" y="130" width="238.66666666666666" height="55"/>
                                         <state key="normal" image="Search Topic Button">
                                             <color key="titleColor" red="0.26109582190000002" green="0.46202963590000001" blue="0.69041299820000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </state>
                                         <connections>
-                                            <action selector="searchButtonPressed:" destination="mlz-Vz-dcW" eventType="touchUpInside" id="5Zt-hE-2KD"/>
+                                            <action selector="searchTopicPressed:" destination="mlz-Vz-dcW" eventType="touchUpInside" id="ECq-vV-Dwz"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -560,7 +560,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="BHC-8w-JIY"/>
+        <segue reference="gst-3u-UvF"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="Audio Video button" width="85" height="44"/>

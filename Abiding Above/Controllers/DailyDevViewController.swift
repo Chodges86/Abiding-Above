@@ -7,16 +7,11 @@
 
 import UIKit
 
-enum SearchMode {
-    case title
-    case topic
-}
 
 class DailyDevViewController: UIViewController {
     
-    var model = DevotionsModel()
-    var searchMode:SearchMode?
-    
+    var devModel = DevotionsModel()
+    var searchVC = SearchViewController()
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -33,30 +28,27 @@ class DailyDevViewController: UIViewController {
     }
     
     @IBAction func todayDevPressed(_ sender: UIButton) {
+        searchMode = .today
         performSegue(withIdentifier: "DevSegue", sender: self)
     }
     
-    @IBAction func searchButtonPressed(_ sender: UIButton) {
-        if sender.tag == 1 {
-            searchMode = .title
-        } else if sender.tag == 2 {
-            searchMode = .topic
-        }
+    @IBAction func searchTopicPressed(_ sender: UIButton) {
+        searchMode = .topic
         performSegue(withIdentifier: "TableView Segue", sender: self)
-
     }
     
+    @IBAction func searchTitlePressed(_ sender: UIButton) {
+        searchMode = .title
+        performSegue(withIdentifier: "TableView Segue", sender: self)
+    }
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Pass in the current date for the DevotionVC to use when getting the correct devotion from the Firestore database
         if segue.identifier == "DevSegue" {
             let destVC = segue.destination as! DevotionViewController
             // Call a func from the DevotionsModel that gets today's date
-            let currentdate = model.getCurrentDate()
+            let currentdate = devModel.getCurrentDate()
             // Pass that date back into the date property of the destVC
             destVC.date = currentdate
-        } else if segue.identifier == "TableView Segue" {
-            let destVC = segue.destination as! SearchViewController
-            destVC.searchMode = searchMode
-        }
+        } 
     }
 }
