@@ -27,7 +27,7 @@ struct BibleModel {
         let selectedVerse = self.formatReference(verse)
         
         // Creat URL object
-        let urlString = "https://api.scripture.api.bible/v1/bibles/bba9f40183526463-01/verses/\(selectedVerse)"
+        let urlString = "https://api.scripture.api.bible/v1/bibles/bba9f40183526463-01/verses/\(selectedVerse)?include-notes=false&include-titles=false&include-chapter-numbers=false&include-verse-numbers=false&include-verse-spans=false&use-org-id=false"
         let url = URL(string: urlString)
         guard url != nil else {
             print("url was nil")
@@ -51,12 +51,13 @@ struct BibleModel {
                     let apiData = try decoder.decode(Bible.PassageData.self, from: data!)
                     let data = apiData.data
                     let htmlString = data.content
-                    
+                    print(htmlString)
                     // JSON result for content value comes back with HTML tags.  Next line removes tags
                     var verse = htmlString.replacingOccurrences(of: "<[^>]+>", with: "", options: .regularExpression, range: nil)
                     // Next line takes the verse ref number out of the content value as well as | that shows up in some verses
                     let numbers:Set<Character> = ["1","2","3","4","5","6","7","8","9","0","|",":","-","(",")"]
                     verse.removeAll(where: { numbers.contains($0) })
+                    
                     // Capitalize the first letter
                     if let firstLetter = verse.first?.uppercased() {
                         let finalVerse = verse.replacingCharacters(in: ...verse.startIndex, with: firstLetter)
