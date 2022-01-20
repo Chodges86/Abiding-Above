@@ -397,17 +397,40 @@
                     <view key="view" contentMode="scaleToFill" id="haI-fT-Yhq">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <wkWebView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="E0S-cr-JIl">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                                <color key="backgroundColor" red="0.36078431372549019" green="0.38823529411764707" blue="0.40392156862745099" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <wkWebViewConfiguration key="configuration">
+                                    <audiovisualMediaTypes key="mediaTypesRequiringUserActionForPlayback" none="YES"/>
+                                    <wkPreferences key="preferences"/>
+                                </wkWebViewConfiguration>
+                            </wkWebView>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="LDa-uJ-Aln">
+                                <rect key="frame" x="188.66666666666666" y="349.66666666666669" width="37" height="37"/>
+                            </activityIndicatorView>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="oaw-ub-amR"/>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="LDa-uJ-Aln" firstAttribute="centerX" secondItem="haI-fT-Yhq" secondAttribute="centerX" id="O7O-XR-XJL"/>
+                            <constraint firstItem="E0S-cr-JIl" firstAttribute="top" secondItem="haI-fT-Yhq" secondAttribute="top" id="WBf-MM-1ot"/>
+                            <constraint firstAttribute="bottom" secondItem="E0S-cr-JIl" secondAttribute="bottom" id="eYO-vx-7ip"/>
+                            <constraint firstItem="E0S-cr-JIl" firstAttribute="leading" secondItem="haI-fT-Yhq" secondAttribute="leading" id="hTU-QR-sIi"/>
+                            <constraint firstItem="LDa-uJ-Aln" firstAttribute="centerY" secondItem="haI-fT-Yhq" secondAttribute="centerY" id="hZW-2A-WYn"/>
+                            <constraint firstAttribute="trailing" secondItem="E0S-cr-JIl" secondAttribute="trailing" id="ruO-AC-xip"/>
+                        </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="" image="Newsletter button" id="KEf-Gg-0yx"/>
-                    <navigationItem key="navigationItem" title="Newsletter" leftItemsSupplementBackButton="YES" id="2mj-iG-MVZ">
-                        <barButtonItem key="backBarButtonItem" title="Back" id="oIW-NV-c4h"/>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" title="Newsletter" leftItemsSupplementBackButton="YES" id="2mj-iG-MVZ"/>
+                    <connections>
+                        <outlet property="spinner" destination="LDa-uJ-Aln" id="VED-FV-pbX"/>
+                        <outlet property="webView" destination="E0S-cr-JIl" id="FSa-ea-058"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FA1-O6-EGf" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="490" y="58"/>
+            <point key="canvasLocation" x="489.85507246376818" y="57.880434782608702"/>
         </scene>
         <!--A/V View Controller-->
         <scene sceneID="6ab-82-wq1">
