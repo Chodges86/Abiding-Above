@@ -17,6 +17,10 @@ class NewsletterViewController: UIViewController {
         super.viewDidLoad()
        
         webView.navigationDelegate = self
+        let logo = UIImage(named: "logo")
+        let imageView = UIImageView(image: logo)
+        imageView.contentMode = .scaleAspectFit // set imageview's content mode
+        self.navigationItem.titleView = imageView
         
         
         
@@ -65,6 +69,9 @@ extension NewsletterViewController: WKNavigationDelegate {
             navigationItem.leftBarButtonItem = nil
         }
         
+        webView.evaluateJavaScript("document.body.style.backgroundColor = '#F5F0EB';" ,
+                                   completionHandler: { (html: Any?, error: Error?) in
+        })
         webView.evaluateJavaScript("document.querySelector('.site-header').remove();" ,
                                    completionHandler: { (html: Any?, error: Error?) in
         })

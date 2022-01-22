@@ -16,7 +16,10 @@ class TopicCell: UITableViewCell {
         super.awakeFromNib()
         
         cellView.layer.cornerRadius = cellView.frame.size.height / 5
-        
+        cellView.layer.shadowOffset = CGSize(width: 10, height: 10)
+        cellView.layer.shadowRadius = 5
+        cellView.layer.shadowOpacity = 0.3
+
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

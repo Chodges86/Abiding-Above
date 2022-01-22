@@ -13,6 +13,10 @@ class HomeViewController: UIViewController {
     @IBOutlet weak var verseView: UIView!
     @IBOutlet weak var verseLabel: UILabel!
     @IBOutlet weak var refLabel: UILabel!
+    @IBOutlet weak var dailyVerseLabel: UILabel!
+    
+   
+    
     
     var bibleModel = BibleModel()
     
@@ -39,10 +43,16 @@ class HomeViewController: UIViewController {
         tabBarController?.tabBar.clipsToBounds = true
         
         // Setup the daily verse layout
-        verseView.layer.cornerRadius = 25
+//        verseView.layer.cornerRadius = 25
         verseView.layer.shadowOffset = CGSize(width: 10, height: 10)
         verseView.layer.shadowRadius = 5
         verseView.layer.shadowOpacity = 0.3
+        dailyVerseLabel.layer.shadowOffset = CGSize(width: 10, height: 10)
+        dailyVerseLabel.layer.shadowRadius = 5
+        refLabel.layer.shadowOpacity = 0.3
+        refLabel.layer.shadowOffset = CGSize(width: 10, height: 10)
+        refLabel.layer.shadowRadius = 5
+        dailyVerseLabel.layer.shadowOpacity = 0.3
         
     }
 }

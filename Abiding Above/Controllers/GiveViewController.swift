@@ -8,33 +8,93 @@
 import UIKit
 import WebKit
 
-class GiveViewController: UIViewController, WKNavigationDelegate {
-
-    var webView: WKWebView!
+class GiveViewController: UIViewController {
     
-    override func loadView() {
-        
-        // Send user to the Give page of the Abiding Above website
-        webView = WKWebView()
-        webView.navigationDelegate = self
-        view = webView
-        
-        // TODO: Setup loading icon on the screen when waiting for webpage to load
-
-    }
+    @IBOutlet weak var webView: WKWebView!
+    @IBOutlet weak var spinner: UIActivityIndicatorView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // TODO: Setup to handle error if URL ever changes
-        let url = URL(string: "https://abidingabove.org/index.php/donations/give/")!
-        webView.load(URLRequest(url: url))
-        webView.allowsBackForwardNavigationGestures = true
+        webView.navigationDelegate = self
+        let logo = UIImage(named: "logo")
+        let imageView = UIImageView(image: logo)
+        imageView.contentMode = .scaleAspectFit // set imageview's content mode
+        self.navigationItem.titleView = imageView
+        
     }
     override func viewWillAppear(_ animated: Bool) {
         // Set tabBar back to default so that it will be more visible with website content
+        tabBarController?.tabBar.isHidden = false
         tabBarController?.tabBar.backgroundImage = nil
         tabBarController?.tabBar.shadowImage = nil
         tabBarController?.tabBar.clipsToBounds = false
+        
+        
+        let url = URL(string: "https://abidingabove.org/index.php/donations/give/")
+        guard url != nil else {return}
+        let request = URLRequest(url: url!)
+        
+        spinner.alpha = 1
+        spinner.startAnimating()
+        
+        webView.load(request)
+        
     }
+    
+    @objc func backTapped() {
+        if webView.canGoBack {
+            webView.goBack()
+        }
+        
+    }
+    
+}
+extension GiveViewController: WKNavigationDelegate {
+    
+    func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
+        
+        spinner.stopAnimating()
+        spinner.alpha = 0
+        
+        if webView.canGoBack {
+            navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Back", style: .plain, target: self, action: #selector(backTapped))
+        } else {
+            navigationItem.leftBarButtonItem = nil
+        }
+        webView.evaluateJavaScript("document.body.style.backgroundColor = '#F5F0EB';" ,
+                                   completionHandler: { (html: Any?, error: Error?) in
+                                   })
+        
+        webView.evaluateJavaScript("document.querySelector('.site-header').remove();" ,
+                                   completionHandler: { (html: Any?, error: Error?) in
+                                   })
+        webView.evaluateJavaScript("document.querySelector('.nav-backed-header').remove();",
+                                   completionHandler: { (html: Any?, error: Error?) in
+                                   })
+        webView.evaluateJavaScript("document.querySelector('.col-md-3').remove();",
+                                   completionHandler: { (html: Any?, error: Error?) in
+                                   })
+        webView.evaluateJavaScript("document.querySelector('.site-footer').remove();",
+                                   completionHandler: { (html: Any?, error: Error?) in
+                                   })
+        webView.evaluateJavaScript("document.querySelector('.site-footer-bottom').remove();",
+                                   completionHandler: { (html: Any?, error: Error?) in
+                                   })
+        webView.evaluateJavaScript("document.getElementById('pgc-2711-0-1').remove();",
+                                   completionHandler: { (html: Any?, error: Error?) in
+                                   })
+        webView.evaluateJavaScript("document.querySelector('.share-bar').remove();",
+                                   completionHandler: { (html: Any?, error: Error?) in
+                                   })
+        
+        webView.alpha = 1
+        
+    }
+    func webView(_ webView: WKWebView, didCommit navigation: WKNavigation!) {
+        webView.alpha = 0
+        
+    }
+    
+    
 }
