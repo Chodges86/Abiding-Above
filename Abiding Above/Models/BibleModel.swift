@@ -51,7 +51,6 @@ struct BibleModel {
                     let apiData = try decoder.decode(Bible.PassageData.self, from: data!)
                     let data = apiData.data
                     let htmlString = data.content
-                    print(htmlString)
                     // JSON result for content value comes back with HTML tags.  Next line removes tags
                     var verse = htmlString.replacingOccurrences(of: "<[^>]+>", with: "", options: .regularExpression, range: nil)
                     // Next line takes the verse ref number out of the content value as well as | that shows up in some verses

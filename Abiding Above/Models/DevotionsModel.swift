@@ -69,19 +69,24 @@ struct DevotionsModel {
                 } else {
                     for document in querySnapshot!.documents {
                         let data = document.data()
-                       if let date = data["date"] as? String,
-                        let title = data["title"] as? String,
-                        let verse = data["verse"] as? String,
-                        let body = data["devotion"] as? String,
-                        let topic = data["topic"] as? [String] {
-                        
-                        let devotion = Devotion(date: date, title: title, verse: verse, body: body, topic: topic)
-                        devotions.append(devotion)
-                       }
+                        if let date = data["date"] as? String,
+                           let title = data["title"] as? String,
+                           let verse = data["verse"] as? String,
+                           let body = data["devotion"] as? String,
+                           let topic = data["topic"] as? [String] {
+                            
+                            let devotion = Devotion(date: date, title: title, verse: verse, body: body, topic: topic)
+                            devotions.append(devotion)
+                        }
                     }
-                    singleDevDelegate?.didRecieveDevotion(devotion: devotions[0])
+                    //TODO: Error Index out of range here when no devotion for todays date is in database
+                    if !devotions.isEmpty {
+                        singleDevDelegate?.didRecieveDevotion(devotion: devotions[0])
+                    } else {
+                        singleDevDelegate?.didRecieveError(error: "Devotion not available. Please check internet connection and try again.")
+                    }
                 }
-        }
+            }
     }  // End of getDevotion function
     
     
