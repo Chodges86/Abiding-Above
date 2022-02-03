@@ -17,9 +17,11 @@ class GiveViewController: UIViewController {
         super.viewDidLoad()
         
         webView.navigationDelegate = self
-        let logo = UIImage(named: "logo")
+        
+        //Put the logo in the navigation bar
+        let logo = UIImage(named: "logoNavBar")
         let imageView = UIImageView(image: logo)
-        imageView.contentMode = .scaleAspectFit // set imageview's content mode
+        imageView.contentMode = .scaleAspectFit 
         self.navigationItem.titleView = imageView
         
     }
@@ -29,39 +31,47 @@ class GiveViewController: UIViewController {
         tabBarController?.tabBar.backgroundImage = nil
         tabBarController?.tabBar.shadowImage = nil
         tabBarController?.tabBar.clipsToBounds = false
+
         
-        
+        // Create URL object and request
         let url = URL(string: "https://abidingabove.org/index.php/donations/give/")
         guard url != nil else {return}
         let request = URLRequest(url: url!)
         
+        // Start the load spinner
         spinner.alpha = 1
         spinner.startAnimating()
         
+        // Load the request
         webView.load(request)
         
     }
     
+    // Setup functionality to allow web navigation
     @objc func backTapped() {
         if webView.canGoBack {
             webView.goBack()
         }
-        
     }
-    
 }
+// MARK: - Navigation Delegates
+
 extension GiveViewController: WKNavigationDelegate {
     
     func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
         
+        // Stop the load spinner
         spinner.stopAnimating()
         spinner.alpha = 0
         
+        // Display the "Back" button in navigation bar only if going back is an option
         if webView.canGoBack {
             navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Back", style: .plain, target: self, action: #selector(backTapped))
         } else {
             navigationItem.leftBarButtonItem = nil
         }
+        // MARK: - JavaScript injection for setting up style of webView
+        
         webView.evaluateJavaScript("document.body.style.backgroundColor = '#F5F0EB';" ,
                                    completionHandler: { (html: Any?, error: Error?) in
                                    })
@@ -87,14 +97,16 @@ extension GiveViewController: WKNavigationDelegate {
         webView.evaluateJavaScript("document.querySelector('.share-bar').remove();",
                                    completionHandler: { (html: Any?, error: Error?) in
                                    })
-        
+        // Reset the webView to visible once webpage is loaded and javascript has run to setup the webView style
         webView.alpha = 1
         
     }
     func webView(_ webView: WKWebView, didCommit navigation: WKNavigation!) {
-        webView.alpha = 0
+        // Start the load spinner
+        spinner.alpha = 1
+        spinner.startAnimating()
         
+        // Make webView invisible while javascript is deleting some aspects and changing some style options, so the user doesn't see these things happening in real time.
+        webView.alpha = 0
     }
-    
-    
 }

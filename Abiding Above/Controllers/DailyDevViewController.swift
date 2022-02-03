@@ -12,9 +12,11 @@ class DailyDevViewController: UIViewController {
     
     var devModel = DevotionsModel()
     var searchVC = SearchViewController()
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -25,6 +27,11 @@ class DailyDevViewController: UIViewController {
         self.navigationController?.navigationBar.shadowImage = UIImage()
         self.navigationController?.navigationBar.isTranslucent = true
         self.navigationController?.view.backgroundColor = .clear
+        
+        // Make the tabBar transparent
+        tabBarController?.tabBar.backgroundImage = UIImage()
+        tabBarController?.tabBar.shadowImage = UIImage()
+        tabBarController?.tabBar.clipsToBounds = true
     }
     
     @IBAction func todayDevPressed(_ sender: UIButton) {
@@ -41,6 +48,7 @@ class DailyDevViewController: UIViewController {
         searchMode = .title
         performSegue(withIdentifier: "TableView Segue", sender: self)
     }
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Pass in the current date for the DevotionVC to use when getting the correct devotion from the Firestore database
         if segue.identifier == "DevSegue" {

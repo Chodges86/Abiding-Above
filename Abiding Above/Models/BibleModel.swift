@@ -8,7 +8,8 @@
 import Foundation
 
 protocol VerseDelegate {
-    func verseReceived(verse: String)
+    func verseReceived(verse: String, copyright: String)
+    func errorReceivingVerse(error: String?)
 }
 
 struct BibleModel {
@@ -27,6 +28,7 @@ struct BibleModel {
         let selectedVerse = self.formatReference(verse)
         
         // Creat URL object
+        // urlString formatted to reach API and filter results per instruction from API documentation
         let urlString = "https://api.scripture.api.bible/v1/bibles/bba9f40183526463-01/verses/\(selectedVerse)?include-notes=false&include-titles=false&include-chapter-numbers=false&include-verse-numbers=false&include-verse-spans=false&use-org-id=false"
         let url = URL(string: urlString)
         guard url != nil else {
@@ -50,6 +52,7 @@ struct BibleModel {
                 if error == nil && data != nil {
                     let apiData = try decoder.decode(Bible.PassageData.self, from: data!)
                     let data = apiData.data
+                    let copyright = data.copyright
                     let htmlString = data.content
                     // JSON result for content value comes back with HTML tags.  Next line removes tags
                     var verse = htmlString.replacingOccurrences(of: "<[^>]+>", with: "", options: .regularExpression, range: nil)
@@ -63,14 +66,13 @@ struct BibleModel {
                         
                         // Tell the delegate that a verse is ready for use
                         DispatchQueue.main.async {
-                            delegate?.verseReceived(verse: finalVerse)
+                            delegate?.verseReceived(verse: finalVerse, copyright: copyright)
                         }
                     }
                 }
                 
             } catch {
-                // TODO: Handle error
-                print("Could not parse JSON into a verse, \(error)")
+                delegate?.errorReceivingVerse(error: "Error: Could not get verse")
             }
         }
         dataTask.resume()

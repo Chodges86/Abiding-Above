@@ -22,6 +22,10 @@ class SearchViewController: UIViewController {
         super.viewDidLoad()
         
         devModel.allDevDelegate = self
+        topicTableView.dataSource = self
+        topicTableView.delegate = self
+        
+        // Get all Devotions from the database for displaying either topics or titles in the tableView
         devModel.getAllDevotions()
         
     }
@@ -29,13 +33,13 @@ class SearchViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
         
-        topicTableView.dataSource = self
-        topicTableView.delegate = self
+        // Register the TopicCell.xib for use in the tableview
         topicTableView.register(UINib(nibName: "TopicCell", bundle: nil), forCellReuseIdentifier: "topicCell")
+        // Style tableview
         topicTableView.backgroundColor = .clear
         topicTableView.separatorStyle = .none
         
-
+        // Hide the tab bar and make back button in nav bar white
         tabBarController?.tabBar.isHidden = true
         navigationController?.navigationBar.tintColor = .white
     }
@@ -45,6 +49,7 @@ class SearchViewController: UIViewController {
 
 extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        // Depending on searchMode number of rows changes
         switch searchMode {
         case .title:
             return allDevotions.count
@@ -56,7 +61,10 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
         let cell = topicTableView.dequeueReusableCell(withIdentifier: "topicCell") as! TopicCell
+        
+        // Depending on searchMode either display the titles of devotions of topics
         switch searchMode {
         case .title:
             cell.topicLabel.text = allDevotions[indexPath.row].title
@@ -75,6 +83,8 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        // Depending on searchMode either segue to DevotionViewController with a devotion by title or reload the tableview with titles from the topic selected
         switch searchMode {
         case .title:
             indexOfSelectedDev = Int(indexPath.row)
@@ -96,12 +106,12 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
         if segue.identifier == "SearchSegue" {
+            //Pass in the devotion selected by the user to the DevotionViewController
             let destVC = segue.destination as? DevotionViewController
             destVC?.devotion = allDevotions[indexOfSelectedDev]
             
         }
     }
-    
 }
 
 extension SearchViewController: AllDevotionsDelegate {
@@ -121,8 +131,12 @@ extension SearchViewController: AllDevotionsDelegate {
     }
     
     func didRecieveError(error: String?) {
-        // TODO: Handle error
-        print("error receiving devotions from database")
+        //TODO: Check to make sure this error message is displayed.  May need to either disconnect internet to computer or empty the database.
+        if error != nil {
+            let alertService = AlertService()
+            let alertVC = alertService.createAlert(error!, "OK")
+            present(alertVC, animated: true, completion: nil)
+        }
     }
     
     

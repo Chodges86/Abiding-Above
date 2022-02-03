@@ -8,6 +8,7 @@
 import Foundation
 import Firebase
 
+// Case selected depending on which way the user decides to access a devotion from the database
 enum SearchMode {
     case title
     case topic
@@ -15,11 +16,12 @@ enum SearchMode {
 }
 var searchMode:SearchMode = .title
 
+// Protocol used by SearchViewController. func getAllDevotions returns to delegate an array of all devotions in the database
 protocol AllDevotionsDelegate {
     func didReceiveAllDevotions(devotions: [Devotion])
     func didRecieveError(error: String?)
 }
-
+// Protocol used by DevotionViewController. func getDevotion returns to delegate a single devotion in the database
 protocol SingleDevotionDelegate {
     func didRecieveDevotion(devotion: Devotion)
     func didRecieveError(error: String?)
@@ -30,8 +32,8 @@ struct DevotionsModel {
     let db = Firestore.firestore()
     var singleDevDelegate: SingleDevotionDelegate?
     var allDevDelegate: AllDevotionsDelegate?
-    
-    
+
+// MARK: - Methods for getting devotions from FireStore
     func getAllDevotions() {
         
         db.collection("devotions").getDocuments { (querySnapshot, err) in
@@ -51,13 +53,16 @@ struct DevotionsModel {
                         
                     }
                 }
-                allDevDelegate?.didReceiveAllDevotions(devotions: allDevotions)
+                if !allDevotions.isEmpty {
+                    allDevDelegate?.didReceiveAllDevotions(devotions: allDevotions)
+                } else {
+                    allDevDelegate?.didRecieveError(error: "Could not connect to the database.  Please check internet connection and try again")
+                }
                 
             }
         }
-    }
+    }// End getAllDevotions
     
-    // Gets the devotion from Firestore based on document name which is the date as a String
     func getDevotion(_ date: String) {
         
         var devotions:[Devotion] = []
@@ -79,7 +84,7 @@ struct DevotionsModel {
                             devotions.append(devotion)
                         }
                     }
-                    //TODO: Error Index out of range here when no devotion for todays date is in database
+                    
                     if !devotions.isEmpty {
                         singleDevDelegate?.didRecieveDevotion(devotion: devotions[0])
                     } else {
