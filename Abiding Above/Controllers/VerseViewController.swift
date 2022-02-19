@@ -12,7 +12,8 @@ class VerseViewController: UIViewController {
     @IBOutlet weak var verseLabel: UILabel!
     @IBOutlet weak var verseView: UIView!
     @IBOutlet weak var refLabel: UILabel!
-    @IBOutlet weak var copyrightLabel: UILabel!
+    @IBOutlet weak var copyright: UIButton!
+    
     @IBOutlet weak var spinner: UIActivityIndicatorView!
     
     var verseRef = String()
@@ -40,6 +41,11 @@ class VerseViewController: UIViewController {
         
     }
     
+    @IBAction func copyrightPressed(_ sender: UIButton) {
+        performSegue(withIdentifier: "VerseToCopyrightSegue", sender: self)
+    }
+    
+    
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         // Dismiss VC when user taps screen
         self.dismiss(animated: true, completion: nil)
@@ -49,12 +55,14 @@ class VerseViewController: UIViewController {
 
 extension VerseViewController: VerseDelegate {
     func verseReceived(verse: String, copyright: String) {
-        spinner.alpha = 0
-        spinner.stopAnimating()
-        // Verse received and placed into label with the reference added to the end
-        verseLabel.text = verse
-        refLabel.text = verseRef
-        copyrightLabel.text = copyright
+        DispatchQueue.main.async {
+            self.spinner.alpha = 0
+            self.spinner.stopAnimating()
+            // Verse received and placed into label with the reference added to the end
+            self.verseLabel.text = verse
+            self.refLabel.text = self.verseRef
+            self.copyright.setTitle(copyright, for: .normal)
+        }
     }
     func errorReceivingVerse(error: String?) {
         

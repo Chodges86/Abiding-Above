@@ -49,6 +49,12 @@ class DailyDevViewController: UIViewController {
         performSegue(withIdentifier: "TableView Segue", sender: self)
     }
     
+    @IBAction func settingsPressed(_ sender: UIBarButtonItem) {
+        performSegue(withIdentifier: "DevToSettings", sender: self)
+        
+    }
+    
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Pass in the current date for the DevotionVC to use when getting the correct devotion from the Firestore database
         if segue.identifier == "DevSegue" {

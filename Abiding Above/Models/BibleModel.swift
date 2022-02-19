@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import UIKit
 
 protocol VerseDelegate {
     func verseReceived(verse: String, copyright: String)
@@ -18,61 +19,31 @@ struct BibleModel {
     
     let apiKey = K.BibleConstants.apiKey
     
-    // Dictionary of all the books of the Bible and their book ID associated with them within the API (Needed for getting a verse from the API)
-    var bookDictionary = K.BibleConstants.bookDictionary
+    var bibleBooks = K.BibleConstants.bibleBooks
     
     
     func getVerse(_ verse: String) {
         
-        // Get a verse reference in the correct format for the API call
-        let selectedVerse = self.formatReference(verse)
+        let formattedVerse = formatReference(verse)
         
-        // Creat URL object
-        // urlString formatted to reach API and filter results per instruction from API documentation
-        let urlString = "https://api.scripture.api.bible/v1/bibles/bba9f40183526463-01/verses/\(selectedVerse)?include-notes=false&include-titles=false&include-chapter-numbers=false&include-verse-numbers=false&include-verse-spans=false&use-org-id=false"
-        let url = URL(string: urlString)
-        guard url != nil else {
-            print("url was nil")
-            return
-        }
+        let urlString = "https://jsonbible.com/search/verses.php?json=\(formattedVerse)"
         
-        // Create a request with the headers required for API call
-        var request = URLRequest(url: url!)
-        request.httpMethod = "GET"
-        request.setValue("application/json", forHTTPHeaderField: "accept")
-        request.setValue(apiKey, forHTTPHeaderField: "api-key")
+        let encodedURL = urlString.addingPercentEncoding(withAllowedCharacters: .urlFragmentAllowed)
         
-        // Create a session
-        let session = URLSession.shared
-        
-        // Decode the JSON
-        let decoder = JSONDecoder()
-        let dataTask = session.dataTask(with: request) { data, response, error in
-            do {
-                if error == nil && data != nil {
-                    let apiData = try decoder.decode(Bible.PassageData.self, from: data!)
-                    let data = apiData.data
-                    let copyright = data.copyright
-                    let htmlString = data.content
-                    // JSON result for content value comes back with HTML tags.  Next line removes tags
-                    var verse = htmlString.replacingOccurrences(of: "<[^>]+>", with: "", options: .regularExpression, range: nil)
-                    // Next line takes the verse ref number out of the content value as well as | that shows up in some verses
-                    let numbers:Set<Character> = ["1","2","3","4","5","6","7","8","9","0","|",":","-","(",")"]
-                    verse.removeAll(where: { numbers.contains($0) })
-                    
-                    // Capitalize the first letter
-                    if let firstLetter = verse.first?.uppercased() {
-                        let finalVerse = verse.replacingCharacters(in: ...verse.startIndex, with: firstLetter)
-                        
-                        // Tell the delegate that a verse is ready for use
-                        DispatchQueue.main.async {
-                            delegate?.verseReceived(verse: finalVerse, copyright: copyright)
-                        }
-                    }
+        let url = URL(string: encodedURL!)
+        let session = URLSession(configuration: .default)
+        let dataTask = session.dataTask(with: url!) { data, response, error in
+            let decoder = JSONDecoder()
+            
+            if data != nil {
+                do {
+                    let jsonData = try decoder.decode(Bible.self, from: data!)
+                    let text = jsonData.text
+                    self.delegate?.verseReceived(verse: text, copyright: "NLT")
+                    print(text)
+                } catch {
+                    print("NO JSON")
                 }
-                
-            } catch {
-                delegate?.errorReceivingVerse(error: "Error: Could not get verse")
             }
         }
         dataTask.resume()
@@ -103,7 +74,8 @@ struct BibleModel {
     }
     
     func formatReference(_ verse: String) -> String {
-        // This function essentially breaks down the standard format of writing a verse reference (ie. Romans 12:2 or Romans 12:2-3) and separates it out into different parameters that are put back together in the format required by the API (ie. ROM.12.2 or ROM.12.2-ROM.12.3)
+        
+        // This function essentially breaks down the standard format of writing a verse reference (ie. Romans 12:2 or Romans 12:2-3) and separates it out into different parameters that are put back together in the format required by the API
         
         
         var formattedRef = verse
@@ -111,20 +83,21 @@ struct BibleModel {
         var chapter = String()
         var firstVerse = String()
         var lastVerse = String()
+        var allVerses = String()
         
-        // Get the bookID required by the API
-        for key in bookDictionary.keys {
-            if verse.contains(String(key)) {
-                bookID = bookDictionary[key]!
-                
+        
+        for (index, book) in bibleBooks.enumerated() {
+            if verse.contains(book) {
+                bookID = bibleBooks[index]
             }
         }
+        
         // Catch if the book is one that starts with a number (ex. 1 Peter, 2 Corinthians).  This has to happen bc the next step is to get chapter which finds the first space and determies position of chapter.  If it's a book with a number then the first space in the string is after the number of book instead of after the book name itself
-        if (formattedRef.first?.isNumber) != nil {
+        if ((formattedRef.first?.isNumber) != nil) {
             formattedRef.removeFirst(2)
         }
         
-       // Get the chapter
+        // Get the chapter
         guard let spaceIndex = formattedRef.firstIndex(of: " ") else {return ""}
         guard let colonIndex = formattedRef.firstIndex(of: ":") else {return ""}
         chapter = String(formattedRef[spaceIndex...colonIndex])
@@ -136,21 +109,35 @@ struct BibleModel {
         
         // Get the first verse if second verse is present
         if let hyphenIndex = formattedRef.firstIndex(of: "-") {
-        firstVerse = String(formattedRef[colonIndex...hyphenIndex])
-        firstVerse.removeFirst() // Remove colon
-        firstVerse.removeLast() // Remove hyphen
-        
-        // Get the last verse
-        lastVerse = String(formattedRef[hyphenIndex...])
-        lastVerse.removeFirst() // Remove hyphen
+            firstVerse = String(formattedRef[colonIndex...hyphenIndex])
+            firstVerse.removeFirst() // Remove colon
+            firstVerse.removeLast() // Remove hyphen
+            
+            // Get the last verse
+            lastVerse = String(formattedRef[hyphenIndex...])
+            lastVerse.removeFirst() // Remove hyphen
         }
         
         // Put all the peices back together in the right format depending on whether it is a range of verses or a single verse
         if verse.contains("-") {
-            formattedRef = "\(bookID).\(chapter).\(firstVerse)-\(bookID).\(chapter).\(lastVerse)"
+            
+            guard let first = Int(firstVerse) else {return ""}
+            guard let last = Int(lastVerse) else {return ""}
+            
+            for verse in first...last {
+                allVerses.append("\(String(verse)),")
+            }
+            allVerses = String(allVerses.dropLast())
+            
         } else {
-            formattedRef = "\(bookID).\(chapter).\(firstVerse)"
+            allVerses = firstVerse
+            
         }
-        return formattedRef
+
+            formattedRef =
+                """
+    { "book": "\(bookID)","chapter": "\(chapter)","verse": "\(allVerses)","version": "nlt" }
+"""
+        return (formattedRef)
     } //End formatReference function
 }//End of BibleModel

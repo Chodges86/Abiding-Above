@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6732130227BF38A800C27997 /* SettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6732130127BF38A800C27997 /* SettingsTableViewController.swift */; };
 		673496D82786838300E95FEF /* SensitiveInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 673496D72786838300E95FEF /* SensitiveInfo.swift */; };
 		673E5B6E272B4BCB00A4689E /* DevotionsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 673E5B6D272B4BCB00A4689E /* DevotionsModel.swift */; };
 		673E969E27151C5E00EB5504 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 673E969D27151C5E00EB5504 /* AppDelegate.swift */; };
@@ -37,6 +38,7 @@
 
 /* Begin PBXFileReference section */
 		0F5A1684CB40B24F0ACC78A5 /* Pods-Abiding Above.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Abiding Above.release.xcconfig"; path = "Target Support Files/Pods-Abiding Above/Pods-Abiding Above.release.xcconfig"; sourceTree = "<group>"; };
+		6732130127BF38A800C27997 /* SettingsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTableViewController.swift; sourceTree = "<group>"; };
 		673496D72786838300E95FEF /* SensitiveInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SensitiveInfo.swift; sourceTree = "<group>"; };
 		673E5B6D272B4BCB00A4689E /* DevotionsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DevotionsModel.swift; sourceTree = "<group>"; };
 		673E969A27151C5E00EB5504 /* Abiding Above.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Abiding Above.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -139,6 +141,7 @@
 				677D6F90275D5F3F00445B5F /* VerseViewController.swift */,
 				6751EAE927331B14000BD2EA /* SearchViewController.swift */,
 				6756110927684CB5004D3E66 /* AlertViewController.swift */,
+				6732130127BF38A800C27997 /* SettingsTableViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -329,6 +332,7 @@
 				6750DD1C272A0559009A33B4 /* Devotions.swift in Sources */,
 				675B36262734BA1900F762B1 /* BibleModel.swift in Sources */,
 				673E96A027151C5E00EB5504 /* SceneDelegate.swift in Sources */,
+				6732130227BF38A800C27997 /* SettingsTableViewController.swift in Sources */,
 				67FFDF51276981D6000E3B60 /* AlertService.swift in Sources */,
 				673496D82786838300E95FEF /* SensitiveInfo.swift in Sources */,
 				673E5B6E272B4BCB00A4689E /* DevotionsModel.swift in Sources */,

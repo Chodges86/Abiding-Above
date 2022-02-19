@@ -29,7 +29,7 @@ class DevotionViewController: UIViewController {
         verseButton.isHidden = true
         
         // Diplay logo in the navigation bar which at this point is set to clear background
-        let logo = UIImage(named: "logo")
+        let logo = UIImage(named: "logoNavBar")
         let imageView = UIImageView(image: logo)
         imageView.contentMode = .scaleAspectFit // set imageview's content mode
         self.navigationItem.titleView = imageView

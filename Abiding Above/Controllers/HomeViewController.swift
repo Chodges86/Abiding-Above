@@ -14,7 +14,8 @@ class HomeViewController: UIViewController {
     @IBOutlet weak var verseLabel: UILabel!
     @IBOutlet weak var refLabel: UILabel!
     @IBOutlet weak var dailyVerseLabel: UILabel!
-    @IBOutlet weak var copyrightLabel: UILabel!
+    @IBOutlet weak var copyright: UIButton!
+    
     @IBOutlet weak var spinner: UIActivityIndicatorView!
     
     
@@ -58,17 +59,29 @@ class HomeViewController: UIViewController {
         dailyVerseLabel.layer.shadowOpacity = 0.3
         
     }
+    
+    @IBAction func settingsPressed(_ sender: UIBarButtonItem) {
+        performSegue(withIdentifier: "HomeToSettings", sender: self)
+        
+    }
+    
+    @IBAction func copyrightTapped(_ sender: UIButton) {
+        performSegue(withIdentifier: "HomeToCopyrightSegue", sender: self)
+    }
+    
 }
 // MARK: - VerseDelegate Methods
 
 extension HomeViewController: VerseDelegate {
     func verseReceived(verse: String, copyright: String) {
-        spinner.alpha = 0
-        spinner.stopAnimating()
-        // Verse received and placed into labels
-        verseLabel.text = verse
-        refLabel.text = bibleModel.generateDailyVerse()
-        copyrightLabel.text = copyright
+        DispatchQueue.main.async {
+            self.spinner.alpha = 0
+            self.spinner.stopAnimating()
+            // Verse received and placed into labels
+            self.verseLabel.text = verse
+            self.refLabel.text = self.bibleModel.generateDailyVerse()
+            self.copyright.setTitle(copyright, for: .normal)
+        }
     }
     func errorReceivingVerse(error: String?) {
         

@@ -7,20 +7,23 @@
 
 import Foundation
 
-struct Bible {
+struct Bible: Decodable {
     
-    struct PassageData: Decodable {
-        var data: Passage
-        var meta: Meta
-    }
+    var text: String
     
-    struct Passage: Decodable {
-        var content: String
-        var reference: String
-        var copyright: String
-        
-    }
-    struct Meta: Decodable {
-        var fumsToken: String
-    }
+    // MARK: - Old API Service Data
+//    struct PassageData: Decodable {
+//        var data: Passage
+//        var meta: Meta
+//    }
+//
+//    struct Passage: Decodable {
+//        var content: String
+//        var reference: String
+//        var copyright: String
+//
+//    }
+//    struct Meta: Decodable {
+//        var fumsId: String
+//    }
 }
