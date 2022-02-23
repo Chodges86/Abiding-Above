@@ -8,13 +8,7 @@
 import Foundation
 import Firebase
 
-// Case selected depending on which way the user decides to access a devotion from the database
-enum SearchMode {
-    case title
-    case topic
-    case today
-}
-var searchMode:SearchMode = .title
+
 
 // Protocol used by SearchViewController. func getAllDevotions returns to delegate an array of all devotions in the database
 protocol AllDevotionsDelegate {

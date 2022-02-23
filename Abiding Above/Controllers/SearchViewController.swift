@@ -7,6 +7,14 @@
 
 import UIKit
 
+// Case selected depending on which way the user decides to access a devotion from the database
+enum SearchMode {
+    case title
+    case topic
+    case today
+}
+var searchMode:SearchMode = .title
+
 class SearchViewController: UIViewController {
     
     @IBOutlet weak var topicTableView: UITableView!
@@ -46,6 +54,7 @@ class SearchViewController: UIViewController {
     
    
 }
+// MARK: Tableview Delegate Methods
 
 extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

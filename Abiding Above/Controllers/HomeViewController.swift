@@ -20,13 +20,21 @@ class HomeViewController: UIViewController {
     
     
     var bibleModel = BibleModel()
+    let defaults = UserDefaults.standard
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         bibleModel.delegate = self
-        // Call the getVerse function to kickoff getting the Daily Verse
-        bibleModel.getVerse(bibleModel.generateDailyVerse())
+        
+        switch defaults.string(forKey: "version") {
+        case "NASB":
+            versionSelected = .NASB
+        case "NLT":
+            versionSelected = .NLT
+        default:
+            versionSelected = .NASB
+        }
         
         spinner.alpha = 1
         spinner.startAnimating()
@@ -57,6 +65,9 @@ class HomeViewController: UIViewController {
         refLabel.layer.shadowOffset = CGSize(width: 10, height: 10)
         refLabel.layer.shadowRadius = 5
         dailyVerseLabel.layer.shadowOpacity = 0.3
+        
+        // Call the getVerse function to kickoff getting the Daily Verse
+        bibleModel.getVerse(bibleModel.generateDailyVerse())
         
     }
     

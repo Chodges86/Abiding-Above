@@ -22,9 +22,13 @@ struct BibleModel {
     var bibleBooks = K.BibleConstants.bibleBooks
     
     
+    
+    
     func getVerse(_ verse: String) {
         
         let formattedVerse = formatReference(verse)
+        var version = String()
+        
         
         let urlString = "https://jsonbible.com/search/verses.php?json=\(formattedVerse)"
         
@@ -39,9 +43,18 @@ struct BibleModel {
                 do {
                     let jsonData = try decoder.decode(Bible.self, from: data!)
                     let text = jsonData.text
-                    self.delegate?.verseReceived(verse: text, copyright: "NLT")
-                    print(text)
+                    //TODO: Set the copyright to the BibleVersion enum selection
+                    
+                    switch versionSelected {
+                    case .NASB:
+                        version = "NASB"
+                    case .NLT:
+                        version = "NLT"
+                    }
+                    
+                    self.delegate?.verseReceived(verse: text, copyright: "\(version) ®")
                 } catch {
+                    // TODO: Handle error
                     print("NO JSON")
                 }
             }
@@ -84,7 +97,7 @@ struct BibleModel {
         var firstVerse = String()
         var lastVerse = String()
         var allVerses = String()
-        
+        var version = String()
         
         for (index, book) in bibleBooks.enumerated() {
             if verse.contains(book) {
@@ -133,10 +146,18 @@ struct BibleModel {
             allVerses = firstVerse
             
         }
-
+// TODO: Set the version to the BibleVersion enum selection
+        
+        switch versionSelected {
+        case .NASB:
+            version = "nasb"
+        case .NLT:
+            version = "nlt"
+        }
+        
             formattedRef =
                 """
-    { "book": "\(bookID)","chapter": "\(chapter)","verse": "\(allVerses)","version": "nlt" }
+    { "book": "\(bookID)","chapter": "\(chapter)","verse": "\(allVerses)","version": "\(version)" }
 """
         return (formattedRef)
     } //End formatReference function

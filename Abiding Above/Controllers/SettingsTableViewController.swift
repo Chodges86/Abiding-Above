@@ -7,17 +7,35 @@
 
 import UIKit
 
+enum BibleVersion: String, CaseIterable {
+    case NLT
+    case NASB
+}
+var versionSelected = BibleVersion.NASB
+
 class SettingsTableViewController: UITableViewController {
     
     @IBOutlet weak var versionNumber: UILabel!
     @IBOutlet weak var supportEmailButton: UIButton!
+    @IBOutlet weak var versionSelector: UIButton!
     
+    let defaults = UserDefaults.standard
+    var nasbState: UIMenu.State = .on
+    var nltState: UIMenu.State = .off
     
+    override func viewWillAppear(_ animated: Bool) {
+        navigationController?.navigationBar.tintColor = .systemBlue
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         let appVersion = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String
         versionNumber.text = appVersion
+        
+        
+        versionSelector.setTitle(defaults.string(forKey: "version"), for: .normal)
+        setVersionOption()
     }
     
     @IBAction func supportEmailTapped(_ sender: UIButton) {
@@ -30,10 +48,37 @@ class SettingsTableViewController: UITableViewController {
             UIApplication.shared.openURL(url)
           }
         }
-        
     }
-    
+    func setVersionOption() {
+        
+        let optionClosure = {(action: UIAction) in
+            
+            // TODO: Set the UserDefaults up and make the user's selection be the default version
+            // TODO: Change the BibleVersion enum to the appropriate selection
+            switch action.title {
+            case "NASB":
+                self.defaults.set("NASB", forKey: "version")
+                self.versionSelector.setTitle(action.title, for: .normal)
+                versionSelected = .NASB
+            case "NLT":
+                self.defaults.set("NLT", forKey: "version")
+                self.versionSelector.setTitle(action.title, for: .normal)
+                versionSelected = .NLT
+            default:
+                versionSelected = .NASB
+            }
+            
+        }
+        
+        versionSelector.menu = UIMenu(children: [
+            UIAction(title: "NASB", handler: optionClosure),
+            UIAction(title: "NLT", handler: optionClosure)])
+        
+        versionSelector.showsMenuAsPrimaryAction = true
 
+
+    }
+   
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
