@@ -22,7 +22,6 @@ class VerseViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        //TODO: Add a loading spinner
         spinner.alpha = 1
         spinner.startAnimating()
         

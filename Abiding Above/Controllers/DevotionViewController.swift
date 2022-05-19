@@ -7,6 +7,8 @@
 
 import UIKit
 
+var bookmarkedDevotions = [String]()
+
 class DevotionViewController: UIViewController {
     
     var devModel = DevotionsModel()
@@ -17,8 +19,11 @@ class DevotionViewController: UIViewController {
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var verseButton: UIButton!
     @IBOutlet weak var devLabel: UILabel!
+    @IBOutlet weak var bookmark: UIButton!
     
+    var isBookmarked: Bool = false
     
+    let defaults = UserDefaults.standard
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -61,6 +66,18 @@ class DevotionViewController: UIViewController {
         verseButton.layer.shadowOpacity = 0.3
         verseButton.layer.cornerRadius = 10
         
+        bookmarkedDevotions = defaults.array(forKey: "bookmarks") as? [String] ?? []
+        
+        if !bookmarkedDevotions.isEmpty {
+            for id in bookmarkedDevotions {
+                guard devotion?.id != nil else {return}
+                if id == devotion?.id {
+                    bookmark.setImage(UIImage(systemName: "bookmark.fill"), for: .normal)
+                    isBookmarked = true
+                }
+            }
+        }
+        
     }
     
     func displayDevotion(_ devotion: Devotion) {
@@ -71,6 +88,32 @@ class DevotionViewController: UIViewController {
         self.devLabel.text = devotion.body
         
     }
+    
+    @IBAction func bookmarkTapped(_ sender: UIButton) {
+        
+        guard devotion?.id != nil else {return}
+        
+        isBookmarked = !isBookmarked
+        if isBookmarked {
+            bookmark.setImage(UIImage(systemName: "bookmark.fill"), for: .normal)
+            if !bookmarkedDevotions.contains(devotion!.id) {
+                bookmarkedDevotions.append(devotion!.id)
+            }
+            defaults.set(bookmarkedDevotions, forKey: "bookmarks")
+            
+        } else {
+            bookmark.setImage(UIImage(systemName: "bookmark"), for: .normal)
+            for (index, id) in bookmarkedDevotions.enumerated() {
+                if devotion!.id == id {
+                    bookmarkedDevotions.remove(at: index)
+                    defaults.set(bookmarkedDevotions, forKey: "bookmarks")
+                }
+            }
+        }
+        print(defaults.array(forKey: "bookmarks")!)
+        
+    }
+    
     
     @IBAction func verseTapped(_ sender: UIButton) {
         

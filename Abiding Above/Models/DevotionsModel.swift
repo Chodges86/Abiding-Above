@@ -37,12 +37,13 @@ struct DevotionsModel {
             } else {
                 for document in querySnapshot!.documents {
                     let data = document.data()
+                    let id = document.documentID
                     if let date = data["date"] as? String,
                        let title = data["title"] as? String,
                        let verse = data["verse"] as? String,
                        let body = data["devotion"] as? String,
                        let topic = data["topic"] as? [String] {
-                        let devotion = Devotion(date: date, title: title, verse: verse, body: body, topic: topic)
+                        let devotion = Devotion(id: id, date: date, title: title, verse: verse, body: body, topic: topic)
                         allDevotions.append(devotion)
                         
                     }
@@ -68,13 +69,14 @@ struct DevotionsModel {
                 } else {
                     for document in querySnapshot!.documents {
                         let data = document.data()
+                        let id = document.documentID
                         if let date = data["date"] as? String,
                            let title = data["title"] as? String,
                            let verse = data["verse"] as? String,
                            let body = data["devotion"] as? String,
                            let topic = data["topic"] as? [String] {
                             
-                            let devotion = Devotion(date: date, title: title, verse: verse, body: body, topic: topic)
+                            let devotion = Devotion(id: id, date: date, title: title, verse: verse, body: body, topic: topic)
                             devotions.append(devotion)
                         }
                     }

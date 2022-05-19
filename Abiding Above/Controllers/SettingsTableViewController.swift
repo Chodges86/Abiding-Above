@@ -32,15 +32,13 @@ class SettingsTableViewController: UITableViewController {
         
         let appVersion = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String
         versionNumber.text = appVersion
-        
-        
         versionSelector.setTitle(defaults.string(forKey: "version"), for: .normal)
         setVersionOption()
     }
     
     @IBAction func supportEmailTapped(_ sender: UIButton) {
         
-        let email = "caleb.hodges0606@gmail.com"
+        let email = "chodgesdev@gmail.com"
         if let url = URL(string: "mailto:\(email)") {
           if #available(iOS 10.0, *) {
             UIApplication.shared.open(url)
@@ -53,17 +51,11 @@ class SettingsTableViewController: UITableViewController {
         
         let optionClosure = {(action: UIAction) in
             
-            // TODO: Set the UserDefaults up and make the user's selection be the default version
-            // TODO: Change the BibleVersion enum to the appropriate selection
             switch action.title {
             case "NASB":
                 self.defaults.set("NASB", forKey: "version")
                 self.versionSelector.setTitle(action.title, for: .normal)
                 versionSelected = .NASB
-            case "NLT":
-                self.defaults.set("NLT", forKey: "version")
-                self.versionSelector.setTitle(action.title, for: .normal)
-                versionSelected = .NLT
             default:
                 versionSelected = .NASB
             }
@@ -71,8 +63,7 @@ class SettingsTableViewController: UITableViewController {
         }
         
         versionSelector.menu = UIMenu(children: [
-            UIAction(title: "NASB", handler: optionClosure),
-            UIAction(title: "NLT", handler: optionClosure)])
+            UIAction(title: "NASB", handler: optionClosure)])
         
         versionSelector.showsMenuAsPrimaryAction = true
 

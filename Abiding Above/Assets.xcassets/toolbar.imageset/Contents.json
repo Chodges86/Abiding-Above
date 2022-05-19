@@ -1,17 +1,17 @@
 {
   "images" : [
     {
-      "filename" : "Toolbar Graphic.png",
+      "filename" : "CustomToolbar.svg",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "Toolbar Graphic@2x.png",
+      "filename" : "CustomToolbar-1.svg",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "Toolbar Graphic@3x.png",
+      "filename" : "CustomToolbar-2.svg",
       "idiom" : "universal",
       "scale" : "3x"
     }

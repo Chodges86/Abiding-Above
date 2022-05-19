@@ -39,6 +39,8 @@ class HomeViewController: UIViewController {
         spinner.alpha = 1
         spinner.startAnimating()
         
+        bookmarkedDevotions = defaults.array(forKey: "bookmarks") as? [String] ?? []
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {

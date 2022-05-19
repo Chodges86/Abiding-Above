@@ -9,6 +9,7 @@ import Foundation
 
 struct Devotion {
     
+    var id: String
     var date: String
     var title: String
     var verse: String

@@ -48,6 +48,10 @@ class DailyDevViewController: UIViewController {
         searchMode = .title
         performSegue(withIdentifier: "TableView Segue", sender: self)
     }
+    @IBAction func bookmarksPressed(_ sender: UIButton) {
+        searchMode = .bookmarked
+        performSegue(withIdentifier: "TableView Segue", sender: self)
+    }
     
     @IBAction func settingsPressed(_ sender: UIBarButtonItem) {
         performSegue(withIdentifier: "DevToSettings", sender: self)

@@ -12,6 +12,7 @@ enum SearchMode {
     case title
     case topic
     case today
+    case bookmarked
 }
 var searchMode:SearchMode = .title
 
@@ -25,9 +26,11 @@ class SearchViewController: UIViewController {
     var allDevotions: [Devotion] = []
     var indexOfSelectedDev:Int = 0
     var topics = [String]()
+    var bookmarked : [Devotion] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         
         devModel.allDevDelegate = self
         topicTableView.dataSource = self
@@ -50,6 +53,14 @@ class SearchViewController: UIViewController {
         // Hide the tab bar and make back button in nav bar white
         tabBarController?.tabBar.isHidden = true
         navigationController?.navigationBar.tintColor = .white
+        
+        for (index, devotion) in bookmarked.enumerated() {
+            if !bookmarkedDevotions.contains(devotion.id) {
+                bookmarked.remove(at: index)
+            }
+        }
+        
+        topicTableView.reloadData()
     }
     
    
@@ -66,6 +77,8 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
             return topics.count
         case .today:
             return 0
+        case .bookmarked:
+            return bookmarked.count
         }
     }
     
@@ -81,6 +94,8 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
             cell.topicLabel.text = topics[indexPath.row]
         case .today:
             break
+        case .bookmarked:
+            cell.topicLabel.text = bookmarked[indexPath.row].title
         }
         return cell
         
@@ -110,6 +125,10 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
             topicTableView.reloadData()
         case .today:
             break
+        case .bookmarked:
+            allDevotions = bookmarked
+            indexOfSelectedDev = Int(indexPath.row)
+            performSegue(withIdentifier: "SearchSegue", sender: self)
         }
     }
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -136,7 +155,14 @@ extension SearchViewController: AllDevotionsDelegate {
         }
         
         topics.append(contentsOf: topicSet)
+        
+        for devotion in allDevotions {
+            if bookmarkedDevotions.contains(devotion.id) {
+                bookmarked.append(devotion)
+            }
+        }
         topicTableView.reloadData()
+
     }
     
     func didRecieveError(error: String?) {

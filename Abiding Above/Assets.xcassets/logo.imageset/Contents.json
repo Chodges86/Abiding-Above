@@ -1,17 +1,17 @@
 {
   "images" : [
     {
-      "filename" : "AALogo 1.png",
+      "filename" : "AAlogo.svg",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "AALogo 1@2x.png",
+      "filename" : "AAlogo-1.svg",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "AALogo 1@3x.png",
+      "filename" : "AAlogo-2.svg",
       "idiom" : "universal",
       "scale" : "3x"
     }
