@@ -34,6 +34,7 @@ struct DevotionsModel {
             var allDevotions = [Devotion]()
             if let err = err {
                 print("Error getting documents: \(err)")
+                allDevDelegate?.didRecieveError(error: "Error getting devotions from database: \(err)")
             } else {
                 for document in querySnapshot!.documents {
                     let data = document.data()
@@ -66,6 +67,7 @@ struct DevotionsModel {
             .getDocuments() { (querySnapshot, error) in
                 if let error = error {
                     print("Error getting documents: \(error)")
+                    singleDevDelegate?.didRecieveError(error: "Error getting devotion from the database: \(error)")
                 } else {
                     for document in querySnapshot!.documents {
                         let data = document.data()

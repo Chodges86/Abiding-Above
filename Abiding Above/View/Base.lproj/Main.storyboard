@@ -97,17 +97,17 @@
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="50"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="hqy-Kx-baJ">
+                                                <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" translatesAutoresizingMaskIntoConstraints="NO" id="hqy-Kx-baJ">
                                                     <rect key="frame" x="25" y="0.0" width="325" height="50"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Bible Version:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Syk-Ei-68D">
-                                                            <rect key="frame" x="0.0" y="0.0" width="162.5" height="50"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="227" height="50"/>
                                                             <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="25"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <button opaque="NO" contentMode="scaleToFill" showsMenuAsPrimaryAction="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ce9-R4-0Or">
-                                                            <rect key="frame" x="162.5" y="0.0" width="162.5" height="50"/>
+                                                            <rect key="frame" x="227" y="0.0" width="98" height="50"/>
                                                             <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="20"/>
                                                             <menu key="menu" id="caZ-hb-jcO">
                                                                 <children>
@@ -188,7 +188,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="NASB®" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="how-tI-2PB">
-                                <rect key="frame" x="41" y="65" width="71" height="24"/>
+                                <rect key="frame" x="41" y="65" width="293" height="24"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="20"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -206,7 +206,7 @@
                         <constraints>
                             <constraint firstItem="3Bq-AW-KuC" firstAttribute="trailing" secondItem="TMW-1k-zRk" secondAttribute="trailing" constant="41" id="5aV-iJ-yOq"/>
                             <constraint firstItem="TMW-1k-zRk" firstAttribute="top" secondItem="how-tI-2PB" secondAttribute="bottom" constant="24" id="BZW-32-Py7"/>
-                            <constraint firstItem="3Bq-AW-KuC" firstAttribute="trailing" secondItem="how-tI-2PB" secondAttribute="trailing" constant="263" id="Iqh-WI-vvv"/>
+                            <constraint firstItem="3Bq-AW-KuC" firstAttribute="trailing" secondItem="how-tI-2PB" secondAttribute="trailing" constant="41" id="Iqh-WI-vvv"/>
                             <constraint firstItem="TMW-1k-zRk" firstAttribute="leading" secondItem="3Bq-AW-KuC" secondAttribute="leading" constant="41" id="jN2-Cr-jar"/>
                             <constraint firstItem="how-tI-2PB" firstAttribute="leading" secondItem="3Bq-AW-KuC" secondAttribute="leading" constant="41" id="rGz-bP-YTo"/>
                             <constraint firstItem="how-tI-2PB" firstAttribute="top" secondItem="3Bq-AW-KuC" secondAttribute="top" constant="21" id="wqO-Vq-dUk"/>

@@ -7,10 +7,7 @@
 
 import UIKit
 
-enum BibleVersion: String, CaseIterable {
-    case NLT
-    case NASB
-}
+
 var versionSelected = BibleVersion.NASB
 
 class SettingsTableViewController: UITableViewController {
@@ -32,8 +29,13 @@ class SettingsTableViewController: UITableViewController {
         
         let appVersion = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String
         versionNumber.text = appVersion
-        versionSelector.setTitle(defaults.string(forKey: "version"), for: .normal)
         setVersionOption()
+        
+        if defaults.string(forKey: "version") == nil {
+            versionSelector.setTitle("Version", for: .normal)
+        } else {
+            versionSelector.setTitle(defaults.string(forKey: "version"), for: .normal)
+        }
     }
     
     @IBAction func supportEmailTapped(_ sender: UIButton) {
@@ -56,12 +58,16 @@ class SettingsTableViewController: UITableViewController {
                 self.defaults.set("NASB", forKey: "version")
                 self.versionSelector.setTitle(action.title, for: .normal)
                 versionSelected = .NASB
+            case "NLT":
+                break // NLT Version not available yet
+            case "NIV":
+                break // NIV Version not available yet
             default:
                 versionSelected = .NASB
             }
             
         }
-        
+        // Add more versions to menu here when versions are available
         versionSelector.menu = UIMenu(children: [
             UIAction(title: "NASB", handler: optionClosure)])
         

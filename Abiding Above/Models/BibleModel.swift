@@ -13,6 +13,12 @@ protocol VerseDelegate {
     func errorReceivingVerse(error: String?)
 }
 
+enum BibleVersion: String, CaseIterable {
+    case NLT
+    case NASB
+    case NIV
+}
+
 struct BibleModel {
     
     var delegate: VerseDelegate?
@@ -43,19 +49,19 @@ struct BibleModel {
                 do {
                     let jsonData = try decoder.decode(Bible.self, from: data!)
                     let text = jsonData.text
-                    //TODO: Set the copyright to the BibleVersion enum selection
                     
                     switch versionSelected {
                     case .NASB:
                         version = "NASB"
                     case .NLT:
                         version = "NLT"
+                    case .NIV:
+                        version = "NIV"
                     }
                     
                     self.delegate?.verseReceived(verse: text, copyright: "\(version) ®")
                 } catch {
-                    // TODO: Handle error
-                    print("NO JSON")
+                    self.delegate?.errorReceivingVerse(error: "Error parsing JSON")
                 }
             }
         }
@@ -146,13 +152,14 @@ struct BibleModel {
             allVerses = firstVerse
             
         }
-// TODO: Set the version to the BibleVersion enum selection
         
         switch versionSelected {
         case .NASB:
             version = "nasb"
         case .NLT:
             version = "nlt"
+        case .NIV:
+            version = "niv"
         }
         
             formattedRef =

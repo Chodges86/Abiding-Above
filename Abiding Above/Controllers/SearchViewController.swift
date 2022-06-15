@@ -91,6 +91,7 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
         case .title:
             cell.topicLabel.text = allDevotions[indexPath.row].title
         case .topic:
+//            let sortedTopics = topics.sorted {$0 < $1}
             cell.topicLabel.text = topics[indexPath.row]
         case .today:
             break
@@ -144,7 +145,7 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
 
 extension SearchViewController: AllDevotionsDelegate {
     func didReceiveAllDevotions(devotions: [Devotion]) {
-        allDevotions = devotions
+        allDevotions = devotions.sorted {$0.title < $1.title}
         
         // Reduce topics down so that only one topic of each is shown
         var topicSet:Set<String> = []
@@ -154,7 +155,7 @@ extension SearchViewController: AllDevotionsDelegate {
             }
         }
         
-        topics.append(contentsOf: topicSet)
+        topics.append(contentsOf: topicSet.sorted {$0 < $1})
         
         for devotion in allDevotions {
             if bookmarkedDevotions.contains(devotion.id) {
@@ -166,7 +167,7 @@ extension SearchViewController: AllDevotionsDelegate {
     }
     
     func didRecieveError(error: String?) {
-        //TODO: Check to make sure this error message is displayed.  May need to either disconnect internet to computer or empty the database.
+        
         if error != nil {
             let alertService = AlertService()
             let alertVC = alertService.createAlert(error!, "OK")

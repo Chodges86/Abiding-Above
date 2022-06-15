@@ -110,7 +110,6 @@ class DevotionViewController: UIViewController {
                 }
             }
         }
-        print(defaults.array(forKey: "bookmarks")!)
         
     }
     
