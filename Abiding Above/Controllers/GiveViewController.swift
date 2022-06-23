@@ -10,103 +10,58 @@ import WebKit
 
 class GiveViewController: UIViewController {
     
-    @IBOutlet weak var webView: WKWebView!
-    @IBOutlet weak var spinner: UIActivityIndicatorView!
+    @IBOutlet weak var donationStatement: UILabel!
+    @IBOutlet weak var donateHereTextView: UITextView!
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        donateHereTextView.automaticallyAdjustsScrollIndicatorInsets = false
         
-        webView.navigationDelegate = self
-        
-        //Put the logo in the navigation bar
-        let logo = UIImage(named: "logoNavBar")
-        let imageView = UIImageView(image: logo)
-        imageView.contentMode = .scaleAspectFit 
-        self.navigationItem.titleView = imageView
-        
+        updateTextView()
     }
+    
     override func viewWillAppear(_ animated: Bool) {
+        
+        donationStatement.layer.shadowOpacity = 0.3
+        donationStatement.layer.shadowOffset = CGSize(width: 10, height: 10)
+        donationStatement.layer.shadowRadius = 5
+        
+        donateHereTextView.layer.shadowOpacity = 0.3
+        donateHereTextView.layer.shadowOffset = CGSize(width: 10, height: 10)
+        donateHereTextView.layer.shadowRadius = 5
+        
         // Set tabBar back to default so that it will be more visible with website content
         tabBarController?.tabBar.isHidden = false
         tabBarController?.tabBar.backgroundImage = nil
         tabBarController?.tabBar.shadowImage = nil
         tabBarController?.tabBar.clipsToBounds = false
-
-        
-        // Create URL object and request
-        let url = URL(string: "https://abidingabove.org/index.php/donations/give/")
-        guard url != nil else {return}
-        let request = URLRequest(url: url!)
-        
-        // Start the load spinner
-        spinner.alpha = 1
-        spinner.startAnimating()
-        
-        // Load the request
-        webView.load(request)
         
     }
-    
-    // Setup functionality to allow web navigation
-    @objc func backTapped() {
-        if webView.canGoBack {
-            webView.goBack()
-        }
+    func updateTextView() {
+        
+        let path = "https://abidingabove.org/index.php/donations/give/"
+        let text = donateHereTextView.text ?? ""
+        let attributedString = NSAttributedString.makeHyperLink(for: path, in: text, as: "here")
+        let font = donateHereTextView.font
+        let color = donateHereTextView.textColor
+        
+        donateHereTextView.attributedText = attributedString
+        donateHereTextView.linkTextAttributes = [.underlineStyle: 1]
+        donateHereTextView.font = font
+        donateHereTextView.textColor = color
+        
     }
 }
-// MARK: - Navigation Delegates
 
-extension GiveViewController: WKNavigationDelegate {
-    
-    func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
+extension NSAttributedString {
+ 
+    static func makeHyperLink(for path: String, in string: String, as substring: String) -> NSAttributedString {
         
-        // Stop the load spinner
-        spinner.stopAnimating()
-        spinner.alpha = 0
-        
-        // Display the "Back" button in navigation bar only if going back is an option
-        if webView.canGoBack {
-            navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Back", style: .plain, target: self, action: #selector(backTapped))
-        } else {
-            navigationItem.leftBarButtonItem = nil
-        }
-        // MARK: - JavaScript injection for setting up style of webView
-        
-        webView.evaluateJavaScript("document.body.style.backgroundColor = '#F5F0EB';" ,
-                                   completionHandler: { (html: Any?, error: Error?) in
-                                   })
-        
-        webView.evaluateJavaScript("document.querySelector('.site-header').remove();" ,
-                                   completionHandler: { (html: Any?, error: Error?) in
-                                   })
-        webView.evaluateJavaScript("document.querySelector('.nav-backed-header').remove();",
-                                   completionHandler: { (html: Any?, error: Error?) in
-                                   })
-        webView.evaluateJavaScript("document.querySelector('.col-md-3').remove();",
-                                   completionHandler: { (html: Any?, error: Error?) in
-                                   })
-        webView.evaluateJavaScript("document.querySelector('.site-footer').remove();",
-                                   completionHandler: { (html: Any?, error: Error?) in
-                                   })
-        webView.evaluateJavaScript("document.querySelector('.site-footer-bottom').remove();",
-                                   completionHandler: { (html: Any?, error: Error?) in
-                                   })
-        webView.evaluateJavaScript("document.getElementById('pgc-2711-0-1').remove();",
-                                   completionHandler: { (html: Any?, error: Error?) in
-                                   })
-        webView.evaluateJavaScript("document.querySelector('.share-bar').remove();",
-                                   completionHandler: { (html: Any?, error: Error?) in
-                                   })
-        // Reset the webView to visible once webpage is loaded and javascript has run to setup the webView style
-        webView.alpha = 1
-        
-    }
-    func webView(_ webView: WKWebView, didCommit navigation: WKNavigation!) {
-        // Start the load spinner
-        spinner.alpha = 1
-        spinner.startAnimating()
-        
-        // Make webView invisible while javascript is deleting some aspects and changing some style options, so the user doesn't see these things happening in real time.
-        webView.alpha = 0
+        let nsString = NSString(string: string)
+        let subStringRange = nsString.range(of: substring)
+        let attributedString = NSMutableAttributedString(string: string)
+        attributedString.addAttribute(.link, value: path, range: subStringRange)
+        return attributedString
     }
 }

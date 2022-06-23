@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="7hf-lu-slX">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="7hf-lu-slX">
     <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19519"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
         <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -184,17 +184,17 @@
             <objects>
                 <viewController id="se4-0E-DTe" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="bfg-Ur-rck">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="647"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="NASB®" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="how-tI-2PB">
-                                <rect key="frame" x="41" y="65" width="293" height="24"/>
+                                <rect key="frame" x="41" y="21" width="293" height="24"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="20"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TMW-1k-zRk">
-                                <rect key="frame" x="41" y="113" width="293" height="122"/>
+                                <rect key="frame" x="41" y="69" width="293" height="122"/>
                                 <string key="text">Scripture quotations taken from the (NASB®) New American Standard Bible®, Copyright © 1960, 1971, 1977, 1995, 2020 by The Lockman Foundation. Used by permission. All rights reserved. www.lockman.org</string>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
@@ -834,40 +834,79 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <wkWebView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LbO-Ju-2T2">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="background" translatesAutoresizingMaskIntoConstraints="NO" id="mAH-DT-pEG">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                                <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <wkWebViewConfiguration key="configuration">
-                                    <audiovisualMediaTypes key="mediaTypesRequiringUserActionForPlayback" none="YES"/>
-                                    <wkPreferences key="preferences"/>
-                                </wkWebViewConfiguration>
-                            </wkWebView>
-                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="b0d-nk-6Wx">
-                                <rect key="frame" x="169" y="315" width="37" height="37"/>
-                            </activityIndicatorView>
+                            </imageView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6d5-XK-8Pm">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="333.5"/>
+                                <subviews>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo" translatesAutoresizingMaskIntoConstraints="NO" id="nZf-qQ-ZBd">
+                                        <rect key="frame" x="-188" y="59" width="751" height="145.5"/>
+                                    </imageView>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstItem="nZf-qQ-ZBd" firstAttribute="height" secondItem="6d5-XK-8Pm" secondAttribute="height" multiplier="7:16" id="JuD-hT-nMa"/>
+                                    <constraint firstItem="nZf-qQ-ZBd" firstAttribute="centerX" secondItem="6d5-XK-8Pm" secondAttribute="centerX" id="eby-CK-g65"/>
+                                    <constraint firstItem="nZf-qQ-ZBd" firstAttribute="centerY" secondItem="6d5-XK-8Pm" secondAttribute="centerY" constant="-35" id="g3M-tL-Xka"/>
+                                </constraints>
+                            </view>
+                            <stackView opaque="NO" contentMode="scaleAspectFit" axis="vertical" distribution="fillProportionally" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="2Tm-7W-cj7">
+                                <rect key="frame" x="11.5" y="224.5" width="352" height="333.5"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.25" translatesAutoresizingMaskIntoConstraints="NO" id="sh6-Ov-35s">
+                                        <rect key="frame" x="1" y="0.0" width="350.5" height="250.5"/>
+                                        <string key="text">Abiding Above Ministries is a faith based 501(c)3 non-profit organization. As a policy, Abiding Above Ministries, does not solicit funds for the organization, or for the personal needs of staff members.
+
+As God provides, Abiding Above Ministries seeks to glorify God by
+encouraging all people into a relationship with Jesus Christ, discipling them in spiritual growth, and equipping them to make disciples of the nations.</string>
+                                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="20"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" editable="NO" text="Click here to donate to Abiding Above Ministries" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="EuS-pl-o8p">
+                                        <rect key="frame" x="1" y="250.5" width="350.5" height="83"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
+                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                        <dataDetectorType key="dataDetectorTypes" link="YES"/>
+                                    </textView>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="EuS-pl-o8p" firstAttribute="width" secondItem="sh6-Ov-35s" secondAttribute="width" id="UDH-eP-RFH"/>
+                                </constraints>
+                            </stackView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="qkt-Ld-zRb"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="LbO-Ju-2T2" firstAttribute="leading" secondItem="8Dq-df-sMr" secondAttribute="leading" id="6Xz-T3-k4G"/>
-                            <constraint firstItem="b0d-nk-6Wx" firstAttribute="centerY" secondItem="8Dq-df-sMr" secondAttribute="centerY" id="9Ov-3L-0Kt"/>
-                            <constraint firstAttribute="trailing" secondItem="LbO-Ju-2T2" secondAttribute="trailing" id="MMD-Sm-o8T"/>
-                            <constraint firstItem="LbO-Ju-2T2" firstAttribute="top" secondItem="8Dq-df-sMr" secondAttribute="top" id="XJe-rW-aZP"/>
-                            <constraint firstItem="b0d-nk-6Wx" firstAttribute="centerX" secondItem="8Dq-df-sMr" secondAttribute="centerX" id="oe7-4f-qDl"/>
-                            <constraint firstAttribute="bottom" secondItem="LbO-Ju-2T2" secondAttribute="bottom" id="zCo-UK-drV"/>
+                            <constraint firstItem="6d5-XK-8Pm" firstAttribute="height" secondItem="mAH-DT-pEG" secondAttribute="height" multiplier="1:2" id="0Vt-Wk-NcY"/>
+                            <constraint firstItem="6d5-XK-8Pm" firstAttribute="leading" secondItem="8Dq-df-sMr" secondAttribute="leading" id="9mU-h6-gYQ"/>
+                            <constraint firstItem="6d5-XK-8Pm" firstAttribute="top" secondItem="8Dq-df-sMr" secondAttribute="top" id="C9J-8B-MZW"/>
+                            <constraint firstItem="2Tm-7W-cj7" firstAttribute="width" secondItem="8Dq-df-sMr" secondAttribute="width" multiplier="15/16" id="EXu-01-d5Q"/>
+                            <constraint firstAttribute="trailing" secondItem="6d5-XK-8Pm" secondAttribute="trailing" id="MST-S5-2eV"/>
+                            <constraint firstItem="2Tm-7W-cj7" firstAttribute="height" secondItem="8Dq-df-sMr" secondAttribute="height" multiplier="1/2" id="QUH-yX-Yce"/>
+                            <constraint firstItem="mAH-DT-pEG" firstAttribute="leading" secondItem="8Dq-df-sMr" secondAttribute="leading" id="V1i-gZ-66R"/>
+                            <constraint firstItem="EuS-pl-o8p" firstAttribute="height" secondItem="8Dq-df-sMr" secondAttribute="height" multiplier="1/8" id="ZYx-9g-xhY"/>
+                            <constraint firstAttribute="trailing" secondItem="mAH-DT-pEG" secondAttribute="trailing" id="bH5-Zk-JOI"/>
+                            <constraint firstAttribute="bottom" secondItem="mAH-DT-pEG" secondAttribute="bottom" id="f5w-h7-Esj"/>
+                            <constraint firstItem="2Tm-7W-cj7" firstAttribute="centerX" secondItem="8Dq-df-sMr" secondAttribute="centerX" id="hfN-RW-Jib"/>
+                            <constraint firstItem="nZf-qQ-ZBd" firstAttribute="bottom" secondItem="2Tm-7W-cj7" secondAttribute="top" constant="-20" id="tCL-fK-YVb"/>
+                            <constraint firstItem="mAH-DT-pEG" firstAttribute="top" secondItem="8Dq-df-sMr" secondAttribute="top" id="tT6-ml-UvQ"/>
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="" image="Give button" id="0RE-l0-suZ"/>
                     <navigationItem key="navigationItem" title="Give" id="UQi-LP-3rY"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
-                        <outlet property="spinner" destination="b0d-nk-6Wx" id="yfK-Rl-ZUw"/>
-                        <outlet property="webView" destination="LbO-Ju-2T2" id="Iut-j8-YAq"/>
+                        <outlet property="donateHereTextView" destination="EuS-pl-o8p" id="a9y-ht-DSb"/>
+                        <outlet property="donationStatement" destination="sh6-Ov-35s" id="TMw-7n-7ff"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="TXx-EZ-Reg" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1961" y="58"/>
+            <point key="canvasLocation" x="1960.8" y="57.121439280359823"/>
         </scene>
         <!--Home Item-->
         <scene sceneID="l1R-5A-EAH">
@@ -986,7 +1025,7 @@
     </scenes>
     <inferredMetricsTieBreakers>
         <segue reference="1xE-fL-YzT"/>
-        <segue reference="muS-n4-uOH"/>
+        <segue reference="ATX-zq-VZx"/>
         <segue reference="piA-j4-FQ9"/>
     </inferredMetricsTieBreakers>
     <resources>

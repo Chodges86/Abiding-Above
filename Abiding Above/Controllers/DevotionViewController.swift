@@ -141,6 +141,7 @@ extension DevotionViewController: SingleDevotionDelegate {
     func didRecieveDevotion(devotion: Devotion) {
         DispatchQueue.main.async {
             // Devotion received and placed into view
+            self.devotion = devotion
             self.displayDevotion(devotion)
         }
     }
