@@ -29,6 +29,7 @@ class NewsletterViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         // Set tabBar back to default so that it will be more visible with website content
         tabBarController?.tabBar.isHidden = false
+        tabBarController?.tabBar.backgroundColor = .white
         tabBarController?.tabBar.backgroundImage = nil
         tabBarController?.tabBar.shadowImage = nil
         tabBarController?.tabBar.clipsToBounds = false
@@ -93,6 +94,14 @@ extension NewsletterViewController: WKNavigationDelegate {
         webView.evaluateJavaScript("document.querySelector('.site-footer-bottom').remove();",
                                    completionHandler: { (html: Any?, error: Error?) in
                                    })
+        webView.evaluateJavaScript("document.querySelector('.page-content.margin-20 > p').remove();",
+                                   completionHandler: { (html: Any?, error: Error?) in
+                                   })
+        webView.evaluateJavaScript("document.querySelector('.share-bar').remove();",
+                                   completionHandler: { (html: Any?, error: Error?) in
+                                   })
+ 
+       
         
         // Reset the webView to visible once webpage is loaded and javascript has run to setup the webView style
         webView.alpha = 1
@@ -106,4 +115,5 @@ extension NewsletterViewController: WKNavigationDelegate {
         // Make webView invisible while javascript is deleting some aspects and changing some style options, so the user doesn't see these things happening in real time.
         webView.alpha = 0
     }
+
 }

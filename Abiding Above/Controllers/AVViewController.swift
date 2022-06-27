@@ -30,6 +30,7 @@ class AVViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         // Set tabBar back to default so that it will be more visible with website content
         tabBarController?.tabBar.isHidden = false
+        tabBarController?.tabBar.backgroundColor = .white
         tabBarController?.tabBar.backgroundImage = nil
         tabBarController?.tabBar.shadowImage = nil
         tabBarController?.tabBar.clipsToBounds = false

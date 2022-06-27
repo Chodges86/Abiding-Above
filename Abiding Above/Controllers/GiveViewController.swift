@@ -22,6 +22,12 @@ class GiveViewController: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        // Set tabBar back to default so that it will be more visible with website content
+        tabBarController?.tabBar.isHidden = false
+        tabBarController?.tabBar.backgroundColor = .white
+        tabBarController?.tabBar.backgroundImage = nil
+        tabBarController?.tabBar.shadowImage = nil
+        tabBarController?.tabBar.clipsToBounds = false
         
         donationStatement.layer.shadowOpacity = 0.3
         donationStatement.layer.shadowOffset = CGSize(width: 10, height: 10)
@@ -31,11 +37,7 @@ class GiveViewController: UIViewController {
         donateHereTextView.layer.shadowOffset = CGSize(width: 10, height: 10)
         donateHereTextView.layer.shadowRadius = 5
         
-        // Set tabBar back to default so that it will be more visible with website content
-        tabBarController?.tabBar.isHidden = false
-        tabBarController?.tabBar.backgroundImage = nil
-        tabBarController?.tabBar.shadowImage = nil
-        tabBarController?.tabBar.clipsToBounds = false
+        
         
     }
     func updateTextView() {
@@ -54,14 +56,4 @@ class GiveViewController: UIViewController {
     }
 }
 
-extension NSAttributedString {
- 
-    static func makeHyperLink(for path: String, in string: String, as substring: String) -> NSAttributedString {
-        
-        let nsString = NSString(string: string)
-        let subStringRange = nsString.range(of: substring)
-        let attributedString = NSMutableAttributedString(string: string)
-        attributedString.addAttribute(.link, value: path, range: subStringRange)
-        return attributedString
-    }
-}
+

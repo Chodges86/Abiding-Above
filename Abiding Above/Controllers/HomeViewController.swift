@@ -52,6 +52,7 @@ class HomeViewController: UIViewController {
         self.navigationController?.view.backgroundColor = .clear
         
         // Make the tabBar transparent
+        tabBarController?.tabBar.backgroundColor = .none
         tabBarController?.tabBar.backgroundImage = UIImage()
         tabBarController?.tabBar.shadowImage = UIImage()
         tabBarController?.tabBar.clipsToBounds = true
