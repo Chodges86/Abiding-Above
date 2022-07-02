@@ -10,9 +10,8 @@ import UIKit
 class HomeViewController: UIViewController {
     
     
-    @IBOutlet weak var verseView: UIView!
     @IBOutlet weak var verseLabel: UILabel!
-    @IBOutlet weak var refLabel: UILabel!
+    
     @IBOutlet weak var dailyVerseLabel: UILabel!
     @IBOutlet weak var copyright: UIButton!
     
@@ -57,17 +56,15 @@ class HomeViewController: UIViewController {
         tabBarController?.tabBar.shadowImage = UIImage()
         tabBarController?.tabBar.clipsToBounds = true
         
-        // Setup the daily verse layout
-        //        verseView.layer.cornerRadius = 25
-        verseView.layer.shadowOffset = CGSize(width: 10, height: 10)
-        verseView.layer.shadowRadius = 5
-        verseView.layer.shadowOpacity = 0.3
+       // Setup the labels with shadows
         dailyVerseLabel.layer.shadowOffset = CGSize(width: 10, height: 10)
         dailyVerseLabel.layer.shadowRadius = 5
-        refLabel.layer.shadowOpacity = 0.3
-        refLabel.layer.shadowOffset = CGSize(width: 10, height: 10)
-        refLabel.layer.shadowRadius = 5
+//        refLabel.layer.shadowOpacity = 0.3
+//        refLabel.layer.shadowOffset = CGSize(width: 10, height: 10)
+//        refLabel.layer.shadowRadius = 5
         dailyVerseLabel.layer.shadowOpacity = 0.3
+        dailyVerseLabel.sizeToFit()
+        
         
         // Call the getVerse function to kickoff getting the Daily Verse
         bibleModel.getVerse(bibleModel.generateDailyVerse())
@@ -92,8 +89,7 @@ extension HomeViewController: VerseDelegate {
             self.spinner.alpha = 0
             self.spinner.stopAnimating()
             // Verse received and placed into labels
-            self.verseLabel.text = verse
-            self.refLabel.text = self.bibleModel.generateDailyVerse()
+            self.verseLabel.text = "\(verse)\n\n\(self.bibleModel.generateDailyVerse())"
             self.copyright.setTitle(copyright, for: .normal)
         }
     }
