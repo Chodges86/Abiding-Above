@@ -13,11 +13,13 @@ class VerseViewController: UIViewController {
     @IBOutlet weak var verseView: UIView!
     @IBOutlet weak var refLabel: UILabel!
     @IBOutlet weak var copyright: UIButton!
+    @IBOutlet weak var verseTitle: UILabel!
     
     @IBOutlet weak var spinner: UIActivityIndicatorView!
     
     var verseRef = String()
     var bibleModel = BibleModel()
+    var verseTitleText = String()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -37,6 +39,8 @@ class VerseViewController: UIViewController {
         verseLabel.layer.shadowRadius = 5
         verseLabel.layer.shadowOpacity = 0.3
         verseView.layer.cornerRadius = 20
+        
+        verseTitle.text = verseTitleText
         
     }
     

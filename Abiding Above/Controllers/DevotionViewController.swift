@@ -125,6 +125,7 @@ class DevotionViewController: UIViewController {
         let destVC = segue.destination as! VerseViewController
         guard let verse = devotion?.verse else {return}
         destVC.verseRef = verse
+        destVC.verseTitleText = "Bible Reading"
     }
 }
 
