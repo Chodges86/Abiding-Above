@@ -21,11 +21,19 @@ protocol SingleDevotionDelegate {
     func didRecieveError(error: String?)
 }
 
+var bookmarkedDevotions = [String]()
+
 struct DevotionsModel {
     
     let db = Firestore.firestore()
     var singleDevDelegate: SingleDevotionDelegate?
     var allDevDelegate: AllDevotionsDelegate?
+    
+    let defaults = UserDefaults.standard
+    
+    func loadBookmarkedDevotions() {
+        bookmarkedDevotions = defaults.array(forKey: "bookmarks") as? [String] ?? []
+    }
 
 // MARK: - Methods for getting devotions from FireStore
     func getAllDevotions() {

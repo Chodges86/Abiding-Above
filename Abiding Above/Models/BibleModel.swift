@@ -48,7 +48,7 @@ struct BibleModel {
             if data != nil {
                 do {
                     let jsonData = try decoder.decode(Bible.self, from: data!)
-                    let text = jsonData.text
+                    var text = jsonData.text
                     
                     switch versionSelected {
                     case .NASB:
@@ -57,6 +57,13 @@ struct BibleModel {
                         version = "NLT"
                     case .NIV:
                         version = "NIV"
+                    }
+                    
+                    let capFirstLetter = text.first?.uppercased()
+                    
+                    if let capFirstLetter = capFirstLetter {
+                        text.removeFirst()
+                        text.insert(Character(capFirstLetter), at: text.startIndex)
                     }
                     
                     self.delegate?.verseReceived(verse: text, copyright: "\(version) ®")

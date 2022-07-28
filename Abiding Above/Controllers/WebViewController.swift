@@ -1,5 +1,5 @@
 //
-//  AVViewController.swift
+//  NewsletterViewController.swift
 //  Abiding Above
 //
 //  Created by Caleb Hodges on 10/20/21.
@@ -8,11 +8,16 @@
 import UIKit
 import WebKit
 
-class AVViewController: UIViewController {
+enum urlNavType {
+    case newsletter
+    case av
+}
+var urlNavMode:urlNavType = .newsletter
+
+class WebViewController: UIViewController {
     
     @IBOutlet weak var webView: WKWebView!
     @IBOutlet weak var spinner: UIActivityIndicatorView!
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,22 +27,37 @@ class AVViewController: UIViewController {
         // Put the logo in the navigation bar
         let logo = UIImage(named: "logoNavBar")
         let imageView = UIImageView(image: logo)
-        imageView.contentMode = .scaleAspectFit 
+        imageView.contentMode = .scaleAspectFit
         self.navigationItem.titleView = imageView
         
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        
+        let appearance = UINavigationBarAppearance()
+        appearance.configureWithTransparentBackground()
+        appearance.backgroundColor = .white
+        navigationController?.navigationBar.standardAppearance = appearance
+        navigationController?.navigationBar.scrollEdgeAppearance = appearance
+        
         // Set tabBar back to default so that it will be more visible with website content
         tabBarController?.tabBar.isHidden = false
         tabBarController?.tabBar.backgroundColor = .white
         tabBarController?.tabBar.backgroundImage = nil
         tabBarController?.tabBar.shadowImage = nil
         tabBarController?.tabBar.clipsToBounds = false
-
         
         // Create URL object and request
-        let url = URL(string: "https://abidingabove.org/index.php/aamsermons/")
+        var urlString = String()
+        
+        switch urlNavMode {
+        case .newsletter:
+            urlString = "https://abidingabove.org/index.php/newsletters/"
+        case .av:
+            urlString = "https://abidingabove.org/index.php/aamsermons/"
+        }
+        
+        let url = URL(string: urlString)
         guard url != nil else {return}
         let request = URLRequest(url: url!)
         
@@ -47,22 +67,23 @@ class AVViewController: UIViewController {
         
         // Load the request
         webView.load(request)
-        
     }
+    
     // Setup functionality to allow web navigation
     @objc func backTapped() {
         if webView.canGoBack {
             webView.goBack()
         }
     }
+    
 }
 // MARK: - Navigation Delegates
 
-extension AVViewController: WKNavigationDelegate {
+extension WebViewController: WKNavigationDelegate {
     
     func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
         
-        // Stop the load spinner
+        // Stop the spinner and hide it
         spinner.stopAnimating()
         spinner.alpha = 0
         
@@ -78,7 +99,6 @@ extension AVViewController: WKNavigationDelegate {
         webView.evaluateJavaScript("document.body.style.backgroundColor = '#F5F0EB';" ,
                                    completionHandler: { (html: Any?, error: Error?) in
                                    })
-        
         webView.evaluateJavaScript("document.querySelector('.site-header').remove();" ,
                                    completionHandler: { (html: Any?, error: Error?) in
                                    })
@@ -94,12 +114,14 @@ extension AVViewController: WKNavigationDelegate {
         webView.evaluateJavaScript("document.querySelector('.site-footer-bottom').remove();",
                                    completionHandler: { (html: Any?, error: Error?) in
                                    })
-        webView.evaluateJavaScript("document.getElementById('pgc-2711-0-1').remove();",
+        webView.evaluateJavaScript("document.querySelector('.page-content.margin-20 > p').remove();",
                                    completionHandler: { (html: Any?, error: Error?) in
                                    })
         webView.evaluateJavaScript("document.querySelector('.share-bar').remove();",
                                    completionHandler: { (html: Any?, error: Error?) in
                                    })
+ 
+       
         
         // Reset the webView to visible once webpage is loaded and javascript has run to setup the webView style
         webView.alpha = 1
@@ -113,4 +135,5 @@ extension AVViewController: WKNavigationDelegate {
         // Make webView invisible while javascript is deleting some aspects and changing some style options, so the user doesn't see these things happening in real time.
         webView.alpha = 0
     }
+
 }

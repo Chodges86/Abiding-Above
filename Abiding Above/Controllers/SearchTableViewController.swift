@@ -1,8 +1,8 @@
 //
-//  SearchTopicViewController.swift
+//  SearchTableViewController.swift
 //  Abiding Above
 //
-//  Created by Caleb Hodges on 11/3/21.
+//  Created by Caleb Hodges on 7/11/22.
 //
 
 import UIKit
@@ -16,43 +16,24 @@ enum SearchMode {
 }
 var searchMode:SearchMode = .title
 
-class SearchViewController: UIViewController {
-    
-    @IBOutlet weak var topicTableView: UITableView!
+
+class SearchTableViewController: UITableViewController {
     
     var devModel = DevotionsModel()
-    let devVC = DevotionViewController()
     
     var allDevotions: [Devotion] = []
     var indexOfSelectedDev:Int = 0
     var topics = [String]()
     var bookmarked : [Devotion] = []
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        
-        devModel.allDevDelegate = self
-        topicTableView.dataSource = self
-        topicTableView.delegate = self
-        
-        // Get all Devotions from the database for displaying either topics or titles in the tableView
-        devModel.getAllDevotions()
-        
-    }
     
     override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(true)
         
-        // Register the TopicCell.xib for use in the tableview
-        topicTableView.register(UINib(nibName: "TopicCell", bundle: nil), forCellReuseIdentifier: "topicCell")
-        // Style tableview
-        topicTableView.backgroundColor = .clear
-        topicTableView.separatorStyle = .none
-        
-        // Hide the tab bar and make back button in nav bar white
-        tabBarController?.tabBar.isHidden = true
-        navigationController?.navigationBar.tintColor = .white
+        let appearance = UINavigationBarAppearance()
+        appearance.configureWithTransparentBackground()
+        appearance.backgroundColor = .white
+        navigationController?.navigationBar.standardAppearance = appearance
+        navigationController?.navigationBar.scrollEdgeAppearance = appearance
         
         for (index, devotion) in bookmarked.enumerated() {
             if !bookmarkedDevotions.contains(devotion.id) {
@@ -60,16 +41,34 @@ class SearchViewController: UIViewController {
             }
         }
         
-        topicTableView.reloadData()
+        tableView.reloadData()
+        
     }
-    
-   
-}
-// MARK: Tableview Delegate Methods
 
-extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // Depending on searchMode number of rows changes
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        
+        devModel.allDevDelegate = self
+        
+        // Get all Devotions from the database for displaying either topics or titles in the tableView
+        devModel.getAllDevotions()
+        
+        // Load the bookmarked devotions for display in the event user taps Bookmarked
+        devModel.loadBookmarkedDevotions()
+        
+        // Put the logo in the navigation bar
+        let logo = UIImage(named: "logoNavBar")
+        let imageView = UIImageView(image: logo)
+        imageView.contentMode = .scaleAspectFit
+        self.navigationItem.titleView = imageView
+        
+    }
+
+    // MARK: - Table view data source
+
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+
         switch searchMode {
         case .title:
             return allDevotions.count
@@ -82,34 +81,43 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
         }
     }
     
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let cell = topicTableView.dequeueReusableCell(withIdentifier: "topicCell") as! TopicCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "SearchField") as! SearchTableViewCell
         
         // Depending on searchMode either display the titles of devotions of topics
         switch searchMode {
         case .title:
-            cell.topicLabel.text = allDevotions[indexPath.row].title
+            cell.searchTitle.text = allDevotions[indexPath.row].title
+            cell.searchMetaData.text = allDevotions[indexPath.row].verse
         case .topic:
-//            let sortedTopics = topics.sorted {$0 < $1}
-            cell.topicLabel.text = topics[indexPath.row]
+            cell.searchTitle.text = topics[indexPath.row]
+            
+            var titlesOfTopic = String()
+            for devotion in allDevotions {
+                if devotion.topic.contains(topics[indexPath.row]) {
+                    titlesOfTopic.append("\(devotion.title), ")
+                }
+            }
+            titlesOfTopic.removeLast(2)
+            cell.searchMetaData.text = titlesOfTopic
+            
         case .today:
             break
         case .bookmarked:
-            cell.topicLabel.text = bookmarked[indexPath.row].title
+            cell.searchTitle.text = bookmarked[indexPath.row].title
+            cell.searchMetaData.text = bookmarked[indexPath.row].verse
         }
         return cell
         
-        
     }
     
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return CGFloat(75)
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return CGFloat(100)
     }
     
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-        // Depending on searchMode either segue to DevotionViewController with a devotion by title or reload the tableview with titles from the topic selected
         switch searchMode {
         case .title:
             indexOfSelectedDev = Int(indexPath.row)
@@ -123,7 +131,7 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
             }
             allDevotions = newDevotions
             searchMode = .title
-            topicTableView.reloadData()
+            self.tableView.reloadData()
         case .today:
             break
         case .bookmarked:
@@ -131,7 +139,9 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
             indexOfSelectedDev = Int(indexPath.row)
             performSegue(withIdentifier: "SearchSegue", sender: self)
         }
+        
     }
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
         if segue.identifier == "SearchSegue" {
@@ -141,10 +151,14 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
             
         }
     }
+
 }
 
-extension SearchViewController: AllDevotionsDelegate {
+// MARK: - Devotion Delegate Meth
+
+extension SearchTableViewController: AllDevotionsDelegate {
     func didReceiveAllDevotions(devotions: [Devotion]) {
+        
         allDevotions = devotions.sorted {$0.title < $1.title}
         
         // Reduce topics down so that only one topic of each is shown
@@ -162,8 +176,8 @@ extension SearchViewController: AllDevotionsDelegate {
                 bookmarked.append(devotion)
             }
         }
-        topicTableView.reloadData()
-
+        tableView.reloadData()
+        
     }
     
     func didRecieveError(error: String?) {
@@ -173,6 +187,7 @@ extension SearchViewController: AllDevotionsDelegate {
             let alertVC = alertService.createAlert(error!, "OK")
             present(alertVC, animated: true, completion: nil)
         }
+        
     }
     
     
