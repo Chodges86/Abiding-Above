@@ -12,18 +12,37 @@ class HomeTableViewController: UITableViewController {
     @IBOutlet weak var dailyVerseLabel: UILabel!
     @IBOutlet weak var dailyVerseView: UIView!
     @IBOutlet weak var dailyVerseTitle: UILabel!
-    
     @IBOutlet weak var dailyDevotionsView: UIView!
+    @IBOutlet weak var newsletterView: UIView!
+    @IBOutlet weak var avView: UIView!
+    @IBOutlet weak var giveView: UIView!
+    @IBOutlet weak var spinner: UIActivityIndicatorView!
+    
     
     var dailyVerse = String()
     var bibleModel = BibleModel()
     
     override func viewWillAppear(_ animated: Bool) {
         
+        let appearance = UINavigationBarAppearance()
+        appearance.configureWithTransparentBackground()
+        appearance.backgroundColor = .clear
+        
+        navigationController?.navigationBar.standardAppearance = appearance
+        navigationController?.navigationBar.scrollEdgeAppearance = appearance
+        
+        tableView.contentInset = UIEdgeInsets(top: 100, left: 0, bottom: 0, right: 0)
+        tableView.contentInsetAdjustmentBehavior = .never
+        
+        
         bibleModel.delegate = self
         
-        styleView(dailyVerseView)
-        styleView(dailyDevotionsView)
+        dailyVerseView.styleView()
+        dailyDevotionsView.styleView()
+        newsletterView.styleView()
+        avView.styleView()
+        giveView.styleView()
+        
         
         // Call the getVerse function to kickoff getting the Daily Verse
         bibleModel.getVerse(bibleModel.generateDailyVerse())
@@ -34,16 +53,12 @@ class HomeTableViewController: UITableViewController {
         super.viewDidLoad()
         
         
+        spinner.alpha = 1
+        spinner.startAnimating()
+        
     }
     
-    func styleView(_ view: UIView) {
-        
-        view.layer.cornerRadius = 8
-        view.layer.shadowOffset = CGSize(width: 2, height: 2)
-        view.layer.shadowRadius = 2
-        view.layer.shadowOpacity = 0.2
-        
-    }
+   
     
     @IBAction func settingsPressed(_ sender: Any) {
         
@@ -75,6 +90,14 @@ extension HomeTableViewController {
             performSegue(withIdentifier: "VerseSegue", sender: self)
         case [0,2]: // Daily Devotions selected
             performSegue(withIdentifier: "DevotionSegue", sender: self)
+        case [0,3]: // Newsletter selected
+            urlNavMode = .newsletter
+            performSegue(withIdentifier: "WebViewSegue", sender: self)
+        case [0,4]: // AV selected
+            urlNavMode = .av
+            performSegue(withIdentifier: "WebViewSegue", sender: self)
+        case [0,5]: // Give selected
+            performSegue(withIdentifier: "GiveSegue", sender: self)
         default:
             break
         }
@@ -91,6 +114,8 @@ extension HomeTableViewController: VerseDelegate {
         DispatchQueue.main.async {
             
             self.dailyVerseLabel.text = "\(verse)\n\n\(self.bibleModel.generateDailyVerse())"
+            self.spinner.alpha = 0
+            self.spinner.startAnimating()
             self.tableView.reloadData()
         }
     }
@@ -104,4 +129,17 @@ extension HomeTableViewController: VerseDelegate {
             }
         }
     }
+}
+
+extension UIView {
+    
+    func styleView() {
+        
+        self.layer.cornerRadius = 8
+        self.layer.shadowOffset = CGSize(width: 2, height: 2)
+        self.layer.shadowRadius = 2
+        self.layer.shadowOpacity = 0.2
+        
+    }
+    
 }

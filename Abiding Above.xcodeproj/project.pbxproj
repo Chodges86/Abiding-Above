@@ -12,24 +12,21 @@
 		673E5B6E272B4BCB00A4689E /* DevotionsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 673E5B6D272B4BCB00A4689E /* DevotionsModel.swift */; };
 		673E969E27151C5E00EB5504 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 673E969D27151C5E00EB5504 /* AppDelegate.swift */; };
 		673E96A027151C5E00EB5504 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 673E969F27151C5E00EB5504 /* SceneDelegate.swift */; };
-		673E96A227151C5E00EB5504 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 673E96A127151C5E00EB5504 /* HomeViewController.swift */; };
 		673E96A527151C5E00EB5504 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 673E96A327151C5E00EB5504 /* Main.storyboard */; };
 		673E96A727151C6000EB5504 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 673E96A627151C6000EB5504 /* Assets.xcassets */; };
 		673E96AA27151C6000EB5504 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 673E96A827151C6000EB5504 /* LaunchScreen.storyboard */; };
 		673E96B227151D1800EB5504 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 673E96B127151D1800EB5504 /* GoogleService-Info.plist */; };
 		674E9ED7287639B300E12CAD /* HomeTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 674E9ED6287639B300E12CAD /* HomeTableViewController.swift */; };
+		674E9ED9287CFB8200E12CAD /* SelectDevTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 674E9ED8287CFB8200E12CAD /* SelectDevTableViewController.swift */; };
+		674E9EDB287D08A700E12CAD /* SearchTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 674E9EDA287D08A700E12CAD /* SearchTableViewController.swift */; };
+		674E9EDD287D0C3C00E12CAD /* SearchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 674E9EDC287D0C3C00E12CAD /* SearchTableViewCell.swift */; };
 		6750DD1C272A0559009A33B4 /* Devotions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6750DD1B272A0559009A33B4 /* Devotions.swift */; };
-		6751EAEA27331B14000BD2EA /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6751EAE927331B14000BD2EA /* SearchViewController.swift */; };
-		6751EAED27331F66000BD2EA /* TopicCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6751EAEB27331F66000BD2EA /* TopicCell.swift */; };
-		6751EAEE27331F66000BD2EA /* TopicCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6751EAEC27331F66000BD2EA /* TopicCell.xib */; };
 		6756110427682CAA004D3E66 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6756110327682CAA004D3E66 /* Constants.swift */; };
 		6756110827684B86004D3E66 /* Alert.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6756110727684B86004D3E66 /* Alert.storyboard */; };
 		6756110A27684CB5004D3E66 /* AlertViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6756110927684CB5004D3E66 /* AlertViewController.swift */; };
 		675B36262734BA1900F762B1 /* BibleModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675B36252734BA1900F762B1 /* BibleModel.swift */; };
 		675B36282734C5C400F762B1 /* Bible.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675B36272734C5C400F762B1 /* Bible.swift */; };
-		677669722720FED70078FA0D /* DailyDevViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 677669712720FED70078FA0D /* DailyDevViewController.swift */; };
-		677669742720FEEB0078FA0D /* NewsletterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 677669732720FEEB0078FA0D /* NewsletterViewController.swift */; };
-		677669782720FF1E0078FA0D /* AVViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 677669772720FF1E0078FA0D /* AVViewController.swift */; };
+		677669742720FEEB0078FA0D /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 677669732720FEEB0078FA0D /* WebViewController.swift */; };
 		6776697A2720FF350078FA0D /* GiveViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 677669792720FF350078FA0D /* GiveViewController.swift */; };
 		677D6F91275D5F3F00445B5F /* VerseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 677D6F90275D5F3F00445B5F /* VerseViewController.swift */; };
 		678B7F1D27279A8200CEAD57 /* DevotionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 678B7F1C27279A8200CEAD57 /* DevotionViewController.swift */; };
@@ -47,25 +44,22 @@
 		673E969A27151C5E00EB5504 /* Abiding Above.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Abiding Above.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		673E969D27151C5E00EB5504 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		673E969F27151C5E00EB5504 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		673E96A127151C5E00EB5504 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		673E96A427151C5E00EB5504 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		673E96A627151C6000EB5504 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		673E96A927151C6000EB5504 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		673E96AB27151C6000EB5504 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		673E96B127151D1800EB5504 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		674E9ED6287639B300E12CAD /* HomeTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTableViewController.swift; sourceTree = "<group>"; };
+		674E9ED8287CFB8200E12CAD /* SelectDevTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectDevTableViewController.swift; sourceTree = "<group>"; };
+		674E9EDA287D08A700E12CAD /* SearchTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchTableViewController.swift; sourceTree = "<group>"; };
+		674E9EDC287D0C3C00E12CAD /* SearchTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchTableViewCell.swift; sourceTree = "<group>"; };
 		6750DD1B272A0559009A33B4 /* Devotions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Devotions.swift; sourceTree = "<group>"; };
-		6751EAE927331B14000BD2EA /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
-		6751EAEB27331F66000BD2EA /* TopicCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopicCell.swift; sourceTree = "<group>"; };
-		6751EAEC27331F66000BD2EA /* TopicCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TopicCell.xib; sourceTree = "<group>"; };
 		6756110327682CAA004D3E66 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		6756110727684B86004D3E66 /* Alert.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Alert.storyboard; sourceTree = "<group>"; };
 		6756110927684CB5004D3E66 /* AlertViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertViewController.swift; sourceTree = "<group>"; };
 		675B36252734BA1900F762B1 /* BibleModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BibleModel.swift; sourceTree = "<group>"; };
 		675B36272734C5C400F762B1 /* Bible.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bible.swift; sourceTree = "<group>"; };
-		677669712720FED70078FA0D /* DailyDevViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyDevViewController.swift; sourceTree = "<group>"; };
-		677669732720FEEB0078FA0D /* NewsletterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsletterViewController.swift; sourceTree = "<group>"; };
-		677669772720FF1E0078FA0D /* AVViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AVViewController.swift; sourceTree = "<group>"; };
+		677669732720FEEB0078FA0D /* WebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
 		677669792720FF350078FA0D /* GiveViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GiveViewController.swift; sourceTree = "<group>"; };
 		677D6F90275D5F3F00445B5F /* VerseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerseViewController.swift; sourceTree = "<group>"; };
 		678B7F1C27279A8200CEAD57 /* DevotionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DevotionViewController.swift; sourceTree = "<group>"; };
@@ -129,9 +123,8 @@
 			isa = PBXGroup;
 			children = (
 				673E96A327151C5E00EB5504 /* Main.storyboard */,
-				6751EAEB27331F66000BD2EA /* TopicCell.swift */,
-				6751EAEC27331F66000BD2EA /* TopicCell.xib */,
 				6756110727684B86004D3E66 /* Alert.storyboard */,
+				674E9EDC287D0C3C00E12CAD /* SearchTableViewCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -140,14 +133,12 @@
 			isa = PBXGroup;
 			children = (
 				674E9ED6287639B300E12CAD /* HomeTableViewController.swift */,
-				673E96A127151C5E00EB5504 /* HomeViewController.swift */,
-				677669712720FED70078FA0D /* DailyDevViewController.swift */,
-				677669732720FEEB0078FA0D /* NewsletterViewController.swift */,
-				677669772720FF1E0078FA0D /* AVViewController.swift */,
+				674E9ED8287CFB8200E12CAD /* SelectDevTableViewController.swift */,
+				674E9EDA287D08A700E12CAD /* SearchTableViewController.swift */,
+				677669732720FEEB0078FA0D /* WebViewController.swift */,
 				677669792720FF350078FA0D /* GiveViewController.swift */,
 				678B7F1C27279A8200CEAD57 /* DevotionViewController.swift */,
 				677D6F90275D5F3F00445B5F /* VerseViewController.swift */,
-				6751EAE927331B14000BD2EA /* SearchViewController.swift */,
 				6756110927684CB5004D3E66 /* AlertViewController.swift */,
 				6732130127BF38A800C27997 /* SettingsTableViewController.swift */,
 				67B34F6D286549F10002C16D /* CopyrightViewController.swift */,
@@ -246,7 +237,6 @@
 			files = (
 				673E96AA27151C6000EB5504 /* LaunchScreen.storyboard in Resources */,
 				673E96B227151D1800EB5504 /* GoogleService-Info.plist in Resources */,
-				6751EAEE27331F66000BD2EA /* TopicCell.xib in Resources */,
 				673E96A727151C6000EB5504 /* Assets.xcassets in Resources */,
 				673E96A527151C5E00EB5504 /* Main.storyboard in Resources */,
 				6756110827684B86004D3E66 /* Alert.storyboard in Resources */,
@@ -326,13 +316,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				67B34F6E286549F10002C16D /* CopyrightViewController.swift in Sources */,
-				677669722720FED70078FA0D /* DailyDevViewController.swift in Sources */,
-				6751EAED27331F66000BD2EA /* TopicCell.swift in Sources */,
 				675B36282734C5C400F762B1 /* Bible.swift in Sources */,
-				6751EAEA27331B14000BD2EA /* SearchViewController.swift in Sources */,
-				677669742720FEEB0078FA0D /* NewsletterViewController.swift in Sources */,
-				673E96A227151C5E00EB5504 /* HomeViewController.swift in Sources */,
-				677669782720FF1E0078FA0D /* AVViewController.swift in Sources */,
+				677669742720FEEB0078FA0D /* WebViewController.swift in Sources */,
+				674E9EDB287D08A700E12CAD /* SearchTableViewController.swift in Sources */,
 				6756110427682CAA004D3E66 /* Constants.swift in Sources */,
 				6756110A27684CB5004D3E66 /* AlertViewController.swift in Sources */,
 				677D6F91275D5F3F00445B5F /* VerseViewController.swift in Sources */,
@@ -340,9 +326,11 @@
 				67B34F6C286548820002C16D /* NSAttributedStringExt.swift in Sources */,
 				6776697A2720FF350078FA0D /* GiveViewController.swift in Sources */,
 				678B7F1D27279A8200CEAD57 /* DevotionViewController.swift in Sources */,
+				674E9ED9287CFB8200E12CAD /* SelectDevTableViewController.swift in Sources */,
 				6750DD1C272A0559009A33B4 /* Devotions.swift in Sources */,
 				675B36262734BA1900F762B1 /* BibleModel.swift in Sources */,
 				674E9ED7287639B300E12CAD /* HomeTableViewController.swift in Sources */,
+				674E9EDD287D0C3C00E12CAD /* SearchTableViewCell.swift in Sources */,
 				673E96A027151C5E00EB5504 /* SceneDelegate.swift in Sources */,
 				6732130227BF38A800C27997 /* SettingsTableViewController.swift in Sources */,
 				67FFDF51276981D6000E3B60 /* AlertService.swift in Sources */,

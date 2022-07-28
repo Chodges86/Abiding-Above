@@ -7,7 +7,7 @@
 
 import UIKit
 
-var bookmarkedDevotions = [String]()
+
 
 class DevotionViewController: UIViewController {
     
@@ -17,31 +17,64 @@ class DevotionViewController: UIViewController {
     var devotion: Devotion?
     
     @IBOutlet weak var titleLabel: UILabel!
-    @IBOutlet weak var verseButton: UIButton!
+    @IBOutlet weak var verseLabel: UILabel!
     @IBOutlet weak var devLabel: UILabel!
-    @IBOutlet weak var bookmark: UIButton!
+    @IBOutlet weak var devotionView: UIView!
+    @IBOutlet weak var spinner: UIActivityIndicatorView!
+    @IBOutlet weak var grayLineView: UIView!
+    @IBOutlet weak var bookmark: UIBarButtonItem!
     
     var isBookmarked: Bool = false
     
-    let defaults = UserDefaults.standard
+    let defaults = UserDefaults.standard // Bookmark data persistance
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        devModel.singleDevDelegate = self
-        
-        // Hide the verse button at first until the BibleModel returns a verse.  Without this a blank button will be displayed in the event no verse comes back from the API
-        verseButton.isHidden = true
+    let symbolConfig = UIImage.SymbolConfiguration(scale: .large) // Config for bookmark button
+
+    
+    override func viewWillAppear(_ animated: Bool) {
         
         // Diplay logo in the navigation bar which at this point is set to clear background
         let logo = UIImage(named: "logoNavBar")
         let imageView = UIImageView(image: logo)
         imageView.contentMode = .scaleAspectFit // set imageview's content mode
-        self.navigationItem.titleView = imageView
+        navigationItem.titleView = imageView
+                
+        
+        // Hide tab bar
+        tabBarController?.tabBar.isHidden = true
+        
+        devModel.loadBookmarkedDevotions()
+        
+        if !bookmarkedDevotions.isEmpty {
+            for id in bookmarkedDevotions {
+                guard devotion?.id != nil else {return}
+                if id == devotion?.id {
+                    bookmark.image = UIImage(systemName: "bookmark.fill", withConfiguration: symbolConfig)
+                    isBookmarked = true
+                }
+            }
+        }
+        
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        spinner.alpha = 1
+        spinner.startAnimating()
+        
+        grayLineView.isHidden = true
+        
+        devModel.singleDevDelegate = self
+        bibleModel.delegate = self
+        // Hide the verse button at first until the BibleModel returns a verse.  Without this a blank button will be displayed in the event no verse comes back from the API
+        verseLabel.isHidden = true
+        
+        
         
         // Display the devotion passed from SearchViewController when view loads
         if let devotion = devotion {
-            displayDevotion(devotion)
+            bibleModel.getVerse(devotion.verse)
         }
         // call getDevotion from DevotionModel with today's date if arrived to this view from the Today's Devotion button
         if searchMode == .today {
@@ -51,58 +84,32 @@ class DevotionViewController: UIViewController {
         }
     }
     
-    override func viewWillAppear(_ animated: Bool) {
+    func displayDevotion(_ devotion: Devotion, _ verse: String) {
         
-        // Hide tab bar
-        tabBarController?.tabBar.isHidden = true
-        // Make back button white
-        navigationController?.navigationBar.tintColor = .white
-        // Shadow effects for title and verse reference button
-        titleLabel.layer.shadowRadius = 5
-        titleLabel.layer.shadowOffset = CGSize(width: 10, height: 10)
-        titleLabel.layer.shadowOpacity = 0.3
-        verseButton.layer.shadowRadius = 5
-        verseButton.layer.shadowOffset = CGSize(width: 10, height: 10)
-        verseButton.layer.shadowOpacity = 0.3
-        verseButton.layer.cornerRadius = 10
-        
-        bookmarkedDevotions = defaults.array(forKey: "bookmarks") as? [String] ?? []
-        
-        if !bookmarkedDevotions.isEmpty {
-            for id in bookmarkedDevotions {
-                guard devotion?.id != nil else {return}
-                if id == devotion?.id {
-                    bookmark.setImage(UIImage(systemName: "bookmark.fill"), for: .normal)
-                    isBookmarked = true
-                }
-            }
-        }
-        
+        verseLabel.isHidden = false
+        titleLabel.text = devotion.title
+        verseLabel.text = "\(devotion.verse) \n\n \(verse)"
+        devLabel.text = devotion.body
+        spinner.alpha = 0
+        spinner.stopAnimating()
+        grayLineView.isHidden = false
     }
     
-    func displayDevotion(_ devotion: Devotion) {
-        
-        self.verseButton.isHidden = false
-        self.titleLabel.text = devotion.title
-        self.verseButton.setTitle("  \(devotion.verse)  ", for: .normal)
-        self.devLabel.text = devotion.body
-        
-    }
-    
-    @IBAction func bookmarkTapped(_ sender: UIButton) {
+    @IBAction func bookmarkTapped(_ sender: UIBarButtonItem) {
         
         guard devotion?.id != nil else {return}
         
+        
         isBookmarked = !isBookmarked
         if isBookmarked {
-            bookmark.setImage(UIImage(systemName: "bookmark.fill"), for: .normal)
+            bookmark.image = UIImage(systemName: "bookmark.fill", withConfiguration: symbolConfig)
             if !bookmarkedDevotions.contains(devotion!.id) {
                 bookmarkedDevotions.append(devotion!.id)
             }
             defaults.set(bookmarkedDevotions, forKey: "bookmarks")
             
         } else {
-            bookmark.setImage(UIImage(systemName: "bookmark"), for: .normal)
+            bookmark.image = UIImage(systemName: "bookmark", withConfiguration: symbolConfig)
             for (index, id) in bookmarkedDevotions.enumerated() {
                 if devotion!.id == id {
                     bookmarkedDevotions.remove(at: index)
@@ -111,21 +118,6 @@ class DevotionViewController: UIViewController {
             }
         }
         
-    }
-    
-    
-    @IBAction func verseTapped(_ sender: UIButton) {
-        
-        performSegue(withIdentifier: "VerseSegue", sender: nil)
-        
-    }
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Pass the verse reference to the VerseViewController when the verse button is pressed
-        let destVC = segue.destination as! VerseViewController
-        guard let verse = devotion?.verse else {return}
-        destVC.verseRef = verse
-        destVC.verseTitleText = "Bible Reading"
     }
 }
 
@@ -143,7 +135,34 @@ extension DevotionViewController: SingleDevotionDelegate {
         DispatchQueue.main.async {
             // Devotion received and placed into view
             self.devotion = devotion
-            self.displayDevotion(devotion)
+            self.bibleModel.getVerse(devotion.verse)
         }
     }
 }
+
+// MARK: - Verse Delegate Methods
+extension DevotionViewController: VerseDelegate {
+    
+    func verseReceived(verse: String, copyright: String) {
+        
+        if let devotion = devotion {
+            DispatchQueue.main.async {
+                self.displayDevotion(devotion, verse)
+            }
+        }
+        
+    }
+    
+    func errorReceivingVerse(error: String?) {
+       
+        DispatchQueue.main.async {
+            if error != nil {
+                let alertService = AlertService()
+                let alertVC = alertService.createAlert(error!, "OK")
+                self.present(alertVC, animated: true, completion: nil)
+            }
+        }
+    }
+    
+}
+

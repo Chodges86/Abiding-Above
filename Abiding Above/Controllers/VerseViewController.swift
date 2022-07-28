@@ -10,6 +10,7 @@ import UIKit
 class VerseViewController: UIViewController {
     
     @IBOutlet weak var verseLabel: UILabel!
+    @IBOutlet weak var borderView: UIView!
     @IBOutlet weak var verseView: UIView!
     @IBOutlet weak var refLabel: UILabel!
     @IBOutlet weak var copyright: UIButton!
@@ -21,6 +22,13 @@ class VerseViewController: UIViewController {
     var bibleModel = BibleModel()
     var verseTitleText = String()
     
+    override func viewWillAppear(_ animated: Bool) {
+        
+        verseView.styleView()
+        borderView.styleView()
+        
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -28,17 +36,9 @@ class VerseViewController: UIViewController {
         spinner.startAnimating()
         
         bibleModel.delegate = self
+        
         // Kickoff the getVerse function to display
         bibleModel.getVerse(verseRef)
-        
-        // Shadow and style effects for refLabel and verseLabel
-        refLabel.layer.shadowOffset = CGSize(width: 10, height: 10)
-        refLabel.layer.shadowRadius = 5
-        refLabel.layer.shadowOpacity = 0.3
-        verseLabel.layer.shadowOffset = CGSize(width: 10, height: 10)
-        verseLabel.layer.shadowRadius = 5
-        verseLabel.layer.shadowOpacity = 0.3
-        verseView.layer.cornerRadius = 20
         
         verseTitle.text = verseTitleText
         
@@ -65,6 +65,8 @@ extension VerseViewController: VerseDelegate {
             self.verseLabel.text = verse
             self.refLabel.text = self.verseRef
             self.copyright.setTitle(copyright, for: .normal)
+            
+            
         }
     }
     func errorReceivingVerse(error: String?) {
