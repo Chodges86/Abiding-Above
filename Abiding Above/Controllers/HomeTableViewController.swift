@@ -18,6 +18,10 @@ class HomeTableViewController: UITableViewController {
     @IBOutlet weak var giveView: UIView!
     @IBOutlet weak var spinner: UIActivityIndicatorView!
     
+    @IBOutlet weak var dailyDevImage: UIImageView!
+    @IBOutlet weak var newsletterImage: UIImageView!
+    @IBOutlet weak var giveImage: UIImageView!
+    @IBOutlet weak var avImage: UIImageView!
     
     var dailyVerse = String()
     var bibleModel = BibleModel()
@@ -37,11 +41,14 @@ class HomeTableViewController: UITableViewController {
         
         bibleModel.delegate = self
         
-        dailyVerseView.styleView()
         dailyDevotionsView.styleView()
         newsletterView.styleView()
         avView.styleView()
         giveView.styleView()
+        dailyDevImage.styleView()
+        newsletterImage.styleView()
+        avImage.styleView()
+        giveImage.styleView()
         
         
         // Call the getVerse function to kickoff getting the Daily Verse
