@@ -89,9 +89,12 @@ extension WebViewController: WKNavigationDelegate {
         
         // Display the "Back" button in navigation bar only if going back is an option
         if webView.canGoBack {
-            navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Back", style: .plain, target: self, action: #selector(backTapped))
+        
+            navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "chevron.left"), style: .plain, target: self, action: #selector(backTapped))
+            navigationItem.hidesBackButton = true
         } else {
             navigationItem.leftBarButtonItem = nil
+            navigationItem.hidesBackButton = false
         }
         
         // MARK: - JavaScript injection for setting up style of webView

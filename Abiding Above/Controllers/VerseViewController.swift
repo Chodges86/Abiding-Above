@@ -10,7 +10,6 @@ import UIKit
 class VerseViewController: UIViewController {
     
     @IBOutlet weak var verseLabel: UILabel!
-    @IBOutlet weak var borderView: UIView!
     @IBOutlet weak var verseView: UIView!
     @IBOutlet weak var refLabel: UILabel!
     @IBOutlet weak var copyright: UIButton!
@@ -25,7 +24,6 @@ class VerseViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         
         verseView.styleView()
-        borderView.styleView()
         
     }
     
@@ -41,6 +39,8 @@ class VerseViewController: UIViewController {
         bibleModel.getVerse(verseRef)
         
         verseTitle.text = verseTitleText
+        
+        
         
     }
     
@@ -65,7 +65,6 @@ extension VerseViewController: VerseDelegate {
             self.verseLabel.text = verse
             self.refLabel.text = self.verseRef
             self.copyright.setTitle(copyright, for: .normal)
-            
             
         }
     }

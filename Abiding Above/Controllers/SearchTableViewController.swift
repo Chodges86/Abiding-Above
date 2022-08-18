@@ -26,6 +26,9 @@ class SearchTableViewController: UITableViewController {
     var topics = [String]()
     var bookmarked : [Devotion] = []
     
+    let loadingView = UIView()
+    let spinner = UIActivityIndicatorView()
+    
     
     override func viewWillAppear(_ animated: Bool) {
         
@@ -44,7 +47,7 @@ class SearchTableViewController: UITableViewController {
         tableView.reloadData()
         
     }
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -63,12 +66,61 @@ class SearchTableViewController: UITableViewController {
         imageView.contentMode = .scaleAspectFit
         self.navigationItem.titleView = imageView
         
+        setLoadingScreen()
+        
     }
-
+    
+    func setLoadingScreen() {
+        
+        // Sets the view which contains the loading text and the spinner
+        let width: CGFloat = 30
+        let height: CGFloat = 30
+        let x = (tableView.frame.width / 2) - (width / 2)
+        let y = (tableView.frame.height / 2) - (height / 2) - (navigationController?.navigationBar.frame.height)!
+        loadingView.frame = CGRect(x: x-(width/2), y: y-(height/2), width: width, height: height)
+        
+        
+        // Sets spinner
+        spinner.frame = CGRect(x: loadingView.frame.width/2, y: 0, width: 30, height: 30)
+        spinner.style = UIActivityIndicatorView.Style.large
+        spinner.startAnimating()
+        
+        // Adds text and spinner to the view
+        loadingView.addSubview(spinner)
+        
+        tableView.addSubview(loadingView)
+        
+    }
+    
+    func removeLoadingScreen() {
+        
+        spinner.hidesWhenStopped = true
+        spinner.stopAnimating()
+        
+    }
+    
+    var imageNumber = 1
+    
+    func setImageToUse() -> UIImage {
+        
+        let image = UIImage(named: "landscape\(imageNumber)")
+        
+        if imageNumber < 10 {
+            imageNumber += 1
+        } else {
+            imageNumber = 1
+        }
+        if let image = image {
+            return image
+        } else {
+            return UIImage()
+        }
+    }
+    
     // MARK: - Table view data source
-
+    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-
+        
         switch searchMode {
         case .title:
             return allDevotions.count
@@ -83,13 +135,17 @@ class SearchTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
+        
         let cell = tableView.dequeueReusableCell(withIdentifier: "SearchField") as! SearchTableViewCell
         
         // Depending on searchMode either display the titles of devotions of topics
         switch searchMode {
+            
         case .title:
             cell.searchTitle.text = allDevotions[indexPath.row].title
             cell.searchMetaData.text = allDevotions[indexPath.row].verse
+            cell.backgroundImage.image = setImageToUse()
+            
         case .topic:
             cell.searchTitle.text = topics[indexPath.row]
             
@@ -101,13 +157,16 @@ class SearchTableViewController: UITableViewController {
             }
             titlesOfTopic.removeLast(2)
             cell.searchMetaData.text = titlesOfTopic
+            cell.backgroundImage.image = setImageToUse()
             
         case .today:
             break
+            
         case .bookmarked:
             cell.searchTitle.text = bookmarked[indexPath.row].title
-            cell.searchMetaData.text = bookmarked[indexPath.row].verse
+            cell.backgroundImage.image = setImageToUse()
         }
+        
         return cell
         
     }
@@ -151,7 +210,7 @@ class SearchTableViewController: UITableViewController {
             
         }
     }
-
+    
 }
 
 // MARK: - Devotion Delegate Meth
@@ -177,7 +236,7 @@ extension SearchTableViewController: AllDevotionsDelegate {
             }
         }
         tableView.reloadData()
-        
+        removeLoadingScreen()
     }
     
     func didRecieveError(error: String?) {

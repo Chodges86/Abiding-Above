@@ -12,12 +12,16 @@ class SearchTableViewCell: UITableViewCell {
     @IBOutlet weak var searchTitle: UILabel!
     @IBOutlet weak var searchMetaData: UILabel!
     @IBOutlet weak var searchView: UIView!
+    @IBOutlet weak var backgroundImage: UIImageView!
+    @IBOutlet weak var backgroundImageDimmer: UIView!
     
     
     override func awakeFromNib() {
         super.awakeFromNib()
         
         searchView.styleView()
+        backgroundImage.styleView()
+        backgroundImageDimmer.styleView()
         
     }
 

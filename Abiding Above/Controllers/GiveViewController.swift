@@ -12,10 +12,17 @@ class GiveViewController: UIViewController {
     
     @IBOutlet weak var donationStatement: UILabel!
     @IBOutlet weak var donateHereTextView: UITextView!
+    @IBOutlet weak var donationStatementView: UIView!
+    @IBOutlet weak var backgroundImageDimmerView: UIView!
+    @IBOutlet weak var backgroundImage: UIImageView!
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        donationStatementView.styleView()
+        backgroundImage.styleView()
+        backgroundImageDimmerView.styleView()
         
         donateHereTextView.automaticallyAdjustsScrollIndicatorInsets = false
         

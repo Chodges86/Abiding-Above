@@ -11,10 +11,7 @@ import UIKit
 
 class DevotionViewController: UIViewController {
     
-    var devModel = DevotionsModel()
-    var bibleModel = BibleModel()
-    var date: String?
-    var devotion: Devotion?
+
     
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var verseLabel: UILabel!
@@ -24,6 +21,11 @@ class DevotionViewController: UIViewController {
     @IBOutlet weak var grayLineView: UIView!
     @IBOutlet weak var bookmark: UIBarButtonItem!
     
+    var devModel = DevotionsModel()
+    var bibleModel = BibleModel()
+    var date: String?
+    var devotion: Devotion?
+    
     var isBookmarked: Bool = false
     
     let defaults = UserDefaults.standard // Bookmark data persistance
@@ -32,6 +34,8 @@ class DevotionViewController: UIViewController {
 
     
     override func viewWillAppear(_ animated: Bool) {
+        
+       
         
         // Diplay logo in the navigation bar which at this point is set to clear background
         let logo = UIImage(named: "logoNavBar")
