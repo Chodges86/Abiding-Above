@@ -67,8 +67,6 @@ class HomeTableViewController: UITableViewController {
         
     }
     
-   
-    
     @IBAction func settingsPressed(_ sender: Any) {
         
         performSegue(withIdentifier: "SettingsSegue", sender: self)
