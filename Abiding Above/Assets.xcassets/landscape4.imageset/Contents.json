@@ -1,15 +1,17 @@
 {
   "images" : [
     {
-      "filename" : "claudel-rheault-ZVbv1akA-l4-unsplash.jpg",
+      "filename" : "landscape4@1x.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
+      "filename" : "landscape4@2x.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
+      "filename" : "landscape4@3x.png",
       "idiom" : "universal",
       "scale" : "3x"
     }

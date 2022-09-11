@@ -1,15 +1,17 @@
 {
   "images" : [
     {
-      "filename" : "johannes-plenio-sPt5RIjKfpk-unsplash.jpg",
+      "filename" : "landscape6@1x.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
+      "filename" : "landscape6@2x.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
+      "filename" : "landscape6@3x.png",
       "idiom" : "universal",
       "scale" : "3x"
     }

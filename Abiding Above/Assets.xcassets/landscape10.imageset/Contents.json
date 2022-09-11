@@ -1,15 +1,17 @@
 {
   "images" : [
     {
-      "filename" : "veeterzy-sMQiL_2v4vs-unsplash.jpg",
+      "filename" : "landscape10@1x.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
+      "filename" : "landscape10@2x.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
+      "filename" : "landscape10@3x.png",
       "idiom" : "universal",
       "scale" : "3x"
     }

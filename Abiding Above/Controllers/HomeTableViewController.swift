@@ -12,20 +12,24 @@ class HomeTableViewController: UITableViewController {
     @IBOutlet weak var dailyVerseLabel: UILabel!
     @IBOutlet weak var dailyVerseView: UIView!
     @IBOutlet weak var dailyVerseTitle: UILabel!
-    @IBOutlet weak var spinner: UIActivityIndicatorView!
     
     @IBOutlet weak var dailyDevImage: UIImageView!
     @IBOutlet weak var newsletterImage: UIImageView!
     @IBOutlet weak var giveImage: UIImageView!
     @IBOutlet weak var avImage: UIImageView!
+    @IBOutlet weak var resourcesImage: UIImageView!
+    
     @IBOutlet weak var dailyDevDimmerView: UIView!
     @IBOutlet weak var newsletterDimmerView: UIView!
     @IBOutlet weak var avDimmerView: UIView!
-    
     @IBOutlet weak var giveDimmerView: UIView!
+    @IBOutlet weak var resourcesDimmerView: UIView!
+    
+    @IBOutlet weak var spinner: UIActivityIndicatorView!
     
     var dailyVerse = String()
     var bibleModel = BibleModel()
+    var urlString = String()
     
     override func viewWillAppear(_ animated: Bool) {
         
@@ -46,12 +50,13 @@ class HomeTableViewController: UITableViewController {
         newsletterImage.styleView()
         avImage.styleView()
         giveImage.styleView()
+        resourcesImage.styleView()
         
         dailyDevDimmerView.styleView()
         newsletterDimmerView.styleView()
         avDimmerView.styleView()
         giveDimmerView.styleView()
-        
+        resourcesDimmerView.styleView()
         
         // Call the getVerse function to kickoff getting the Daily Verse
         bibleModel.getVerse(bibleModel.generateDailyVerse())
@@ -80,6 +85,9 @@ class HomeTableViewController: UITableViewController {
             let destVC = segue.destination as! VerseViewController
             destVC.verseRef = dailyVerse
             destVC.verseTitleText = "Daily Verse"
+        } else if segue.identifier == "WebViewSegue" {
+            let destVC = segue.destination as! WebViewController
+            destVC.urlString = urlString
         }
         
     }
@@ -98,17 +106,18 @@ extension HomeTableViewController {
         case [0,2]: // Daily Devotions selected
             performSegue(withIdentifier: "DevotionSegue", sender: self)
         case [0,3]: // Newsletter selected
-            urlNavMode = .newsletter
+            urlString = "https://abidingabove.org/index.php/newsletters/"
             performSegue(withIdentifier: "WebViewSegue", sender: self)
         case [0,4]: // AV selected
-            urlNavMode = .av
+            urlString = "https://abidingabove.org/index.php/aamsermons/"
             performSegue(withIdentifier: "WebViewSegue", sender: self)
         case [0,5]: // Give selected
             performSegue(withIdentifier: "GiveSegue", sender: self)
+        case [0,6]:
+            performSegue(withIdentifier: "ResourcesSegue", sender: self)
         default:
             break
         }
-        
         
     }
     

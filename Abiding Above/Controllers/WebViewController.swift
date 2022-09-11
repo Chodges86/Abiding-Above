@@ -8,21 +8,19 @@
 import UIKit
 import WebKit
 
-enum urlNavType {
-    case newsletter
-    case av
-}
-var urlNavMode:urlNavType = .newsletter
 
 class WebViewController: UIViewController {
     
     @IBOutlet weak var webView: WKWebView!
     @IBOutlet weak var spinner: UIActivityIndicatorView!
     
+    var urlString: String?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+            
         webView.navigationDelegate = self
+        webView.uiDelegate = self
         
         // Put the logo in the navigation bar
         let logo = UIImage(named: "logoNavBar")
@@ -30,6 +28,7 @@ class WebViewController: UIViewController {
         imageView.contentMode = .scaleAspectFit
         self.navigationItem.titleView = imageView
         
+        loadRequest(with: urlString!)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -47,26 +46,22 @@ class WebViewController: UIViewController {
         tabBarController?.tabBar.shadowImage = nil
         tabBarController?.tabBar.clipsToBounds = false
         
-        // Create URL object and request
-        var urlString = String()
-        
-        switch urlNavMode {
-        case .newsletter:
-            urlString = "https://abidingabove.org/index.php/newsletters/"
-        case .av:
-            urlString = "https://abidingabove.org/index.php/aamsermons/"
-        }
-        
-        let url = URL(string: urlString)
-        guard url != nil else {return}
-        let request = URLRequest(url: url!)
         
         // Start the load spinner
         spinner.alpha = 1
         spinner.startAnimating()
         
+    }
+    
+    func loadRequest(with urlString: String) {
+        
+        let url = URL(string: urlString)
+        guard url != nil else {return}
+        let request = URLRequest(url: url!)
+        
         // Load the request
         webView.load(request)
+        
     }
     
     // Setup functionality to allow web navigation
@@ -79,7 +74,7 @@ class WebViewController: UIViewController {
 }
 // MARK: - Navigation Delegates
 
-extension WebViewController: WKNavigationDelegate {
+extension WebViewController: WKNavigationDelegate, WKUIDelegate {
     
     func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
         
@@ -99,34 +94,25 @@ extension WebViewController: WKNavigationDelegate {
         
         // MARK: - JavaScript injection for setting up style of webView
         
-        webView.evaluateJavaScript("document.body.style.backgroundColor = '#F5F0EB';" ,
-                                   completionHandler: { (html: Any?, error: Error?) in
-                                   })
-        webView.evaluateJavaScript("document.querySelector('.site-header').remove();" ,
-                                   completionHandler: { (html: Any?, error: Error?) in
-                                   })
-        webView.evaluateJavaScript("document.querySelector('.nav-backed-header').remove();",
-                                   completionHandler: { (html: Any?, error: Error?) in
-                                   })
-        webView.evaluateJavaScript("document.querySelector('.col-md-3').remove();",
-                                   completionHandler: { (html: Any?, error: Error?) in
-                                   })
-        webView.evaluateJavaScript("document.querySelector('.site-footer').remove();",
-                                   completionHandler: { (html: Any?, error: Error?) in
-                                   })
-        webView.evaluateJavaScript("document.querySelector('.site-footer-bottom').remove();",
-                                   completionHandler: { (html: Any?, error: Error?) in
-                                   })
-        webView.evaluateJavaScript("document.querySelector('.page-content.margin-20 > p').remove();",
-                                   completionHandler: { (html: Any?, error: Error?) in
-                                   })
-        webView.evaluateJavaScript("document.querySelector('.share-bar').remove();",
-                                   completionHandler: { (html: Any?, error: Error?) in
-                                   })
- 
-       
+        let javaScript = [
+            "document.body.style.backgroundColor = '#F5F0EB'",
+            "document.querySelector('.site-header').remove()",
+            "document.querySelector('.nav-backed-header').remove()",
+            "document.querySelector('.col-md-3').remove()",
+            "document.querySelector('.site-footer').remove()",
+            "document.querySelector('.site-footer-bottom').remove()",
+            "document.querySelector('.page-content.margin-20 > p').remove()",
+            "document.querySelector('.share-bar').remove()"
+        ]
         
-        // Reset the webView to visible once webpage is loaded and javascript has run to setup the webView style
+        
+        for item in javaScript {
+            webView.evaluateJavaScript(item ,
+                                       completionHandler: { (html: Any?, error: Error?) in
+            })
+        }
+ 
+       // Reset the webView to visible once webpage is loaded and javascript has run to setup the webView style
         webView.alpha = 1
         
     }
@@ -135,8 +121,37 @@ extension WebViewController: WKNavigationDelegate {
         spinner.alpha = 1
         spinner.startAnimating()
         
+        
         // Make webView invisible while javascript is deleting some aspects and changing some style options, so the user doesn't see these things happening in real time.
         webView.alpha = 0
     }
-
+    
+    func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
+        
+        let externalLinks = [
+            "http://ubdavid.org/",
+            "http://www.emmausworldwide.org/",
+            "https://t4tonline.org/",
+            "https://abidingabove.org/index.php/bible-lesson-sign-up/"]
+        
+        if let urlString = navigationAction.request.url?.absoluteString {
+            
+            if externalLinks.contains(urlString) {
+                decisionHandler(.cancel)
+                UIApplication.shared.open(navigationAction.request.url!)
+            } else {
+                decisionHandler(.allow)
+            }
+        }
+    }
+    
+    func webView(_ webView: WKWebView, createWebViewWith configuration: WKWebViewConfiguration, for navigationAction: WKNavigationAction, windowFeatures: WKWindowFeatures) -> WKWebView? {
+        if let frame = navigationAction.targetFrame,
+               frame.isMainFrame {
+               return nil
+           }
+           webView.load(navigationAction.request)
+           return nil
+    }
+   
 }

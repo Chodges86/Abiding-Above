@@ -1,15 +1,17 @@
 {
   "images" : [
     {
-      "filename" : "sebastian-unrau-v4e3JI7DDHI-unsplash.jpg",
+      "filename" : "landscape9@1x.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
+      "filename" : "landscape9@2x.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
+      "filename" : "landscape9@3x.png",
       "idiom" : "universal",
       "scale" : "3x"
     }

@@ -1,15 +1,17 @@
 {
   "images" : [
     {
-      "filename" : "kiwihug-L4gw27XZN1I-unsplash.jpg",
+      "filename" : "bible@1x.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
+      "filename" : "bible@2x.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
+      "filename" : "bible@3x.png",
       "idiom" : "universal",
       "scale" : "3x"
     }

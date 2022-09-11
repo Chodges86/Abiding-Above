@@ -1,15 +1,17 @@
 {
   "images" : [
     {
-      "filename" : "michael-dziedzic-1bjsASjhfkE-unsplash.jpg",
+      "filename" : "key@1x.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
+      "filename" : "key@2x.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
+      "filename" : "key@3x.png",
       "idiom" : "universal",
       "scale" : "3x"
     }

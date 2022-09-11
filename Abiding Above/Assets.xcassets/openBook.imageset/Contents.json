@@ -1,15 +1,17 @@
 {
   "images" : [
     {
-      "filename" : "brandi-redd-6H9H-tYPUQQ-unsplash.jpg",
+      "filename" : "openBook@1x.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
+      "filename" : "openBook@2x.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
+      "filename" : "openBook@3x.png",
       "idiom" : "universal",
       "scale" : "3x"
     }

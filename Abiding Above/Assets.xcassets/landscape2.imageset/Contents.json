@@ -1,15 +1,17 @@
 {
   "images" : [
     {
-      "filename" : "ales-krivec-hsX9KpLLsIE-unsplash.jpg",
+      "filename" : "landscape2@1x.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
+      "filename" : "landscape2@2x.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
+      "filename" : "landscape2@3x.png",
       "idiom" : "universal",
       "scale" : "3x"
     }

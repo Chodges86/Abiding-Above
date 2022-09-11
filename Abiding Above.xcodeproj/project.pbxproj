@@ -16,6 +16,7 @@
 		673E96A727151C6000EB5504 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 673E96A627151C6000EB5504 /* Assets.xcassets */; };
 		673E96AA27151C6000EB5504 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 673E96A827151C6000EB5504 /* LaunchScreen.storyboard */; };
 		673E96B227151D1800EB5504 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 673E96B127151D1800EB5504 /* GoogleService-Info.plist */; };
+		673F308A28B03F3100917E64 /* ResourcesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 673F308928B03F3100917E64 /* ResourcesTableViewController.swift */; };
 		674E9ED7287639B300E12CAD /* HomeTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 674E9ED6287639B300E12CAD /* HomeTableViewController.swift */; };
 		674E9ED9287CFB8200E12CAD /* SelectDevTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 674E9ED8287CFB8200E12CAD /* SelectDevTableViewController.swift */; };
 		674E9EDB287D08A700E12CAD /* SearchTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 674E9EDA287D08A700E12CAD /* SearchTableViewController.swift */; };
@@ -49,6 +50,7 @@
 		673E96A927151C6000EB5504 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		673E96AB27151C6000EB5504 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		673E96B127151D1800EB5504 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		673F308928B03F3100917E64 /* ResourcesTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResourcesTableViewController.swift; sourceTree = "<group>"; };
 		674E9ED6287639B300E12CAD /* HomeTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTableViewController.swift; sourceTree = "<group>"; };
 		674E9ED8287CFB8200E12CAD /* SelectDevTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectDevTableViewController.swift; sourceTree = "<group>"; };
 		674E9EDA287D08A700E12CAD /* SearchTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchTableViewController.swift; sourceTree = "<group>"; };
@@ -135,6 +137,7 @@
 				674E9ED6287639B300E12CAD /* HomeTableViewController.swift */,
 				674E9ED8287CFB8200E12CAD /* SelectDevTableViewController.swift */,
 				674E9EDA287D08A700E12CAD /* SearchTableViewController.swift */,
+				673F308928B03F3100917E64 /* ResourcesTableViewController.swift */,
 				677669732720FEEB0078FA0D /* WebViewController.swift */,
 				677669792720FF350078FA0D /* GiveViewController.swift */,
 				678B7F1C27279A8200CEAD57 /* DevotionViewController.swift */,
@@ -318,6 +321,7 @@
 				67B34F6E286549F10002C16D /* CopyrightViewController.swift in Sources */,
 				675B36282734C5C400F762B1 /* Bible.swift in Sources */,
 				677669742720FEEB0078FA0D /* WebViewController.swift in Sources */,
+				673F308A28B03F3100917E64 /* ResourcesTableViewController.swift in Sources */,
 				674E9EDB287D08A700E12CAD /* SearchTableViewController.swift in Sources */,
 				6756110427682CAA004D3E66 /* Constants.swift in Sources */,
 				6756110A27684CB5004D3E66 /* AlertViewController.swift in Sources */,
@@ -487,7 +491,7 @@
 				DEVELOPMENT_TEAM = S9BYCV72B7;
 				INFOPLIST_FILE = "Abiding Above/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				MARKETING_VERSION = 0.1.1;
+				MARKETING_VERSION = 0.2.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "AbidingAbove.Abiding-Above";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -506,7 +510,7 @@
 				DEVELOPMENT_TEAM = S9BYCV72B7;
 				INFOPLIST_FILE = "Abiding Above/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				MARKETING_VERSION = 0.1.1;
+				MARKETING_VERSION = 0.2.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "AbidingAbove.Abiding-Above";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;

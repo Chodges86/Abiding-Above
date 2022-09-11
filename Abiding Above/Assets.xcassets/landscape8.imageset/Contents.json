@@ -1,15 +1,17 @@
 {
   "images" : [
     {
-      "filename" : "matthew-smith-VNsGywdphUY-unsplash.jpg",
+      "filename" : "landscape8@1x.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
+      "filename" : "landscape8@2x.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
+      "filename" : "landscape8@3x.png",
       "idiom" : "universal",
       "scale" : "3x"
     }
