@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6728C88F28CE924300B708A0 /* UIViewStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6728C88E28CE924300B708A0 /* UIViewStyle.swift */; };
 		6732130227BF38A800C27997 /* SettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6732130127BF38A800C27997 /* SettingsTableViewController.swift */; };
 		673496D82786838300E95FEF /* SensitiveInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 673496D72786838300E95FEF /* SensitiveInfo.swift */; };
 		673E5B6E272B4BCB00A4689E /* DevotionsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 673E5B6D272B4BCB00A4689E /* DevotionsModel.swift */; };
@@ -39,6 +40,7 @@
 
 /* Begin PBXFileReference section */
 		0F5A1684CB40B24F0ACC78A5 /* Pods-Abiding Above.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Abiding Above.release.xcconfig"; path = "Target Support Files/Pods-Abiding Above/Pods-Abiding Above.release.xcconfig"; sourceTree = "<group>"; };
+		6728C88E28CE924300B708A0 /* UIViewStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewStyle.swift; sourceTree = "<group>"; };
 		6732130127BF38A800C27997 /* SettingsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTableViewController.swift; sourceTree = "<group>"; };
 		673496D72786838300E95FEF /* SensitiveInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SensitiveInfo.swift; sourceTree = "<group>"; };
 		673E5B6D272B4BCB00A4689E /* DevotionsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DevotionsModel.swift; sourceTree = "<group>"; };
@@ -108,6 +110,7 @@
 				673E969D27151C5E00EB5504 /* AppDelegate.swift */,
 				673E969F27151C5E00EB5504 /* SceneDelegate.swift */,
 				67B34F6B286548820002C16D /* NSAttributedStringExt.swift */,
+				6728C88E28CE924300B708A0 /* UIViewStyle.swift */,
 				677669702720FE820078FA0D /* Models */,
 				6776696E2720FE5C0078FA0D /* View */,
 				6776696F2720FE640078FA0D /* Controllers */,
@@ -321,6 +324,7 @@
 				67B34F6E286549F10002C16D /* CopyrightViewController.swift in Sources */,
 				675B36282734C5C400F762B1 /* Bible.swift in Sources */,
 				677669742720FEEB0078FA0D /* WebViewController.swift in Sources */,
+				6728C88F28CE924300B708A0 /* UIViewStyle.swift in Sources */,
 				673F308A28B03F3100917E64 /* ResourcesTableViewController.swift in Sources */,
 				674E9EDB287D08A700E12CAD /* SearchTableViewController.swift in Sources */,
 				6756110427682CAA004D3E66 /* Constants.swift in Sources */,
