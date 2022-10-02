@@ -17,3 +17,7 @@ The app uses Firebase Firestore as a remote database to load devotions written b
 - WebKit
 - Delegate Protocol impelementation
 - UserDefaults
+
+
+
+![AAvideoGIF](https://user-images.githubusercontent.com/95727406/193482060-4a5b5095-bc3b-449d-8fc7-9729f21187b9.gif)
