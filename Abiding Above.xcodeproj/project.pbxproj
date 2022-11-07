@@ -34,7 +34,6 @@
 		678B7F1D27279A8200CEAD57 /* DevotionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 678B7F1C27279A8200CEAD57 /* DevotionViewController.swift */; };
 		67B34F6C286548820002C16D /* NSAttributedStringExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67B34F6B286548820002C16D /* NSAttributedStringExt.swift */; };
 		67B34F6E286549F10002C16D /* CopyrightViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67B34F6D286549F10002C16D /* CopyrightViewController.swift */; };
-		67D9524B2919C5CD00C03100 /* NavigationControllerExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67D9524A2919C5CD00C03100 /* NavigationControllerExt.swift */; };
 		67FFDF51276981D6000E3B60 /* AlertService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67FFDF50276981D6000E3B60 /* AlertService.swift */; };
 		9286A9C7BD482B9010CBC3A8 /* Pods_Abiding_Above.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FB97778C75DD2A44C5B65CB0 /* Pods_Abiding_Above.framework */; };
 /* End PBXBuildFile section */
@@ -70,7 +69,6 @@
 		678B7F1C27279A8200CEAD57 /* DevotionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DevotionViewController.swift; sourceTree = "<group>"; };
 		67B34F6B286548820002C16D /* NSAttributedStringExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSAttributedStringExt.swift; sourceTree = "<group>"; };
 		67B34F6D286549F10002C16D /* CopyrightViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CopyrightViewController.swift; sourceTree = "<group>"; };
-		67D9524A2919C5CD00C03100 /* NavigationControllerExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationControllerExt.swift; sourceTree = "<group>"; };
 		67FFDF50276981D6000E3B60 /* AlertService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertService.swift; sourceTree = "<group>"; };
 		FA2D8A799780C3A3F108802C /* Pods-Abiding Above.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Abiding Above.debug.xcconfig"; path = "Target Support Files/Pods-Abiding Above/Pods-Abiding Above.debug.xcconfig"; sourceTree = "<group>"; };
 		FB97778C75DD2A44C5B65CB0 /* Pods_Abiding_Above.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Abiding_Above.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -113,7 +111,6 @@
 				673E969F27151C5E00EB5504 /* SceneDelegate.swift */,
 				67B34F6B286548820002C16D /* NSAttributedStringExt.swift */,
 				6728C88E28CE924300B708A0 /* UIViewStyle.swift */,
-				67D9524A2919C5CD00C03100 /* NavigationControllerExt.swift */,
 				677669702720FE820078FA0D /* Models */,
 				6776696E2720FE5C0078FA0D /* View */,
 				6776696F2720FE640078FA0D /* Controllers */,
@@ -345,7 +342,6 @@
 				673E96A027151C5E00EB5504 /* SceneDelegate.swift in Sources */,
 				6732130227BF38A800C27997 /* SettingsTableViewController.swift in Sources */,
 				67FFDF51276981D6000E3B60 /* AlertService.swift in Sources */,
-				67D9524B2919C5CD00C03100 /* NavigationControllerExt.swift in Sources */,
 				673496D82786838300E95FEF /* SensitiveInfo.swift in Sources */,
 				673E5B6E272B4BCB00A4689E /* DevotionsModel.swift in Sources */,
 			);
