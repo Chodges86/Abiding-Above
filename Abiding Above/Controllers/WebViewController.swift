@@ -14,6 +14,7 @@ class WebViewController: UIViewController {
     @IBOutlet weak var webView: WKWebView!
     @IBOutlet weak var spinner: UIActivityIndicatorView!
     
+    
     var urlString: String?
     
     override func viewDidLoad() {
@@ -22,13 +23,31 @@ class WebViewController: UIViewController {
         webView.navigationDelegate = self
         webView.uiDelegate = self
         
-        // Put the logo in the navigation bar
-        let logo = UIImage(named: "logoNavBar")
-        let imageView = UIImageView(image: logo)
-        imageView.contentMode = .scaleAspectFit
-        self.navigationItem.titleView = imageView
+        if parent != nil && navigationItem.titleView == nil {
+            navigationControllerSetup()
+        }
+        
         
         loadRequest(with: urlString!)
+    }
+  
+    func navigationControllerSetup() {
+        
+            // Put the logo in the navigation bar
+            let logo = UIImage(named: "logoNavBar")
+            let imageView = UIImageView(image: logo)
+            imageView.contentMode = .scaleAspectFit
+            self.navigationItem.titleView = imageView
+            
+            let recognizer = UITapGestureRecognizer(target: self, action: #selector(homeTapped(_:)))
+            imageView.isUserInteractionEnabled = true
+            imageView.addGestureRecognizer(recognizer)
+        
+    }
+    
+    
+    @objc private func homeTapped(_ recognizer: UITapGestureRecognizer) {
+        navigationController?.popToRootViewController(animated: true)
     }
     
     override func viewWillAppear(_ animated: Bool) {

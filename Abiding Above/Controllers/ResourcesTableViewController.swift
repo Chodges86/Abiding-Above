@@ -67,6 +67,8 @@ class ResourcesTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         switch indexPath {
+        case [0,0]:
+            navigationController?.popToRootViewController(animated: true)
         case [0,2]: // Abiding Above Discipleship School selected
             urlString = "https://abidingabove.org/index.php/abiding-above-discipleship-school/"
             performSegue(withIdentifier: "WebViewSegue", sender: self)

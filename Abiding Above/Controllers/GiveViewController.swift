@@ -15,7 +15,7 @@ class GiveViewController: UIViewController {
     @IBOutlet weak var donationStatementView: UIView!
     @IBOutlet weak var backgroundImageDimmerView: UIView!
     @IBOutlet weak var backgroundImage: UIImageView!
-    
+    @IBOutlet weak var logo: UIImageView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,7 +26,15 @@ class GiveViewController: UIViewController {
         
         donateHereTextView.automaticallyAdjustsScrollIndicatorInsets = false
         
+        let recognizer = UITapGestureRecognizer(target: self, action: #selector(homeTapped(_:)))
+        logo.isUserInteractionEnabled = true
+        logo.addGestureRecognizer(recognizer)
+        
         updateTextView()
+    }
+    
+    @objc func homeTapped(_ recognizer: UITapGestureRecognizer) {
+        navigationController?.popToRootViewController(animated: true)
     }
     
     func updateTextView() {

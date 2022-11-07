@@ -35,14 +35,9 @@ class DevotionViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         
-       
-        
-        // Diplay logo in the navigation bar which at this point is set to clear background
-        let logo = UIImage(named: "logoNavBar")
-        let imageView = UIImageView(image: logo)
-        imageView.contentMode = .scaleAspectFit // set imageview's content mode
-        navigationItem.titleView = imageView
-                
+        if parent != nil && navigationItem.titleView == nil {
+            navigationControllerSetup()
+        }
         
         // Hide tab bar
         tabBarController?.tabBar.isHidden = true
@@ -58,7 +53,6 @@ class DevotionViewController: UIViewController {
                 }
             }
         }
-        
     }
     
     override func viewDidLoad() {
@@ -86,6 +80,25 @@ class DevotionViewController: UIViewController {
                 devModel.getDevotion(date)
             }
         }
+    }
+    
+    func navigationControllerSetup() {
+        
+            // Put the logo in the navigation bar
+            let logo = UIImage(named: "logoNavBar")
+            let imageView = UIImageView(image: logo)
+            imageView.contentMode = .scaleAspectFit
+            self.navigationItem.titleView = imageView
+            
+            let recognizer = UITapGestureRecognizer(target: self, action: #selector(homeTapped(_:)))
+            imageView.isUserInteractionEnabled = true
+            imageView.addGestureRecognizer(recognizer)
+        
+    }
+    
+    
+    @objc private func homeTapped(_ recognizer: UITapGestureRecognizer) {
+        navigationController?.popToRootViewController(animated: true)
     }
     
     func displayDevotion(_ devotion: Devotion, _ verse: String) {

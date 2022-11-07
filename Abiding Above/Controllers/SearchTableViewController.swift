@@ -64,11 +64,14 @@ class SearchTableViewController: UITableViewController {
         let logo = UIImage(named: "logoNavBar")
         let imageView = UIImageView(image: logo)
         imageView.contentMode = .scaleAspectFit
-        self.navigationItem.titleView = imageView
+        navigationItem.titleView = imageView
+       
+       
         
         setLoadingScreen()
         
     }
+   
     
     func setLoadingScreen() {
         

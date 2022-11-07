@@ -33,12 +33,15 @@ class HomeTableViewController: UITableViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         
+        
+        
         let appearance = UINavigationBarAppearance()
         appearance.configureWithTransparentBackground()
         appearance.backgroundColor = .clear
         
         navigationController?.navigationBar.standardAppearance = appearance
         navigationController?.navigationBar.scrollEdgeAppearance = appearance
+        
         
         tableView.contentInset = UIEdgeInsets(top: 100, left: 0, bottom: 0, right: 0)
         tableView.contentInsetAdjustmentBehavior = .never

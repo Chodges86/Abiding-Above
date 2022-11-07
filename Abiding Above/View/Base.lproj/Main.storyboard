@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="cmJ-Pv-BRy">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="cmJ-Pv-BRy">
     <device id="retina5_5" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
         <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -23,7 +23,7 @@
                             <tableViewSection id="6wF-ou-fkE">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="5lx-aI-giV" userLabel="Version Cell">
-                                        <rect key="frame" x="0.0" y="44.666666030883789" width="414" height="50"/>
+                                        <rect key="frame" x="0.0" y="50" width="414" height="50"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="5lx-aI-giV" id="pWT-TK-PHR">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="50"/>
@@ -56,7 +56,7 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="d0L-mI-9he" userLabel="Support Cell">
-                                        <rect key="frame" x="0.0" y="94.666666030883789" width="414" height="50"/>
+                                        <rect key="frame" x="0.0" y="100" width="414" height="50"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="d0L-mI-9he" id="Wgf-i0-4FN">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="50"/>
@@ -91,7 +91,7 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="aFK-0h-fUi" userLabel="Bible Version">
-                                        <rect key="frame" x="0.0" y="144.66666603088379" width="414" height="50"/>
+                                        <rect key="frame" x="0.0" y="150" width="414" height="50"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="aFK-0h-fUi" id="6d4-Px-Z8s">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="50"/>
@@ -129,7 +129,7 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="baE-e5-sXW" userLabel="Copyright Info">
-                                        <rect key="frame" x="0.0" y="194.66666603088379" width="414" height="50"/>
+                                        <rect key="frame" x="0.0" y="200" width="414" height="50"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="baE-e5-sXW" id="2Ov-Yn-NWz">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="50"/>
@@ -267,7 +267,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eRj-ER-zSi">
-                                        <rect key="frame" x="10" y="328.66666666666663" width="290.66666666666669" height="31"/>
+                                        <rect key="frame" x="10" y="328.66666666666663" width="290.66666666666669" height="34.333333333333314"/>
                                         <color key="tintColor" red="0.1333333333" green="0.32941177490000001" blue="0.5647059083" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="plain" title="NASB"/>
@@ -353,20 +353,21 @@
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Vxt-DT-w2b">
                                 <rect key="frame" x="0.0" y="44" width="414" height="907"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="73D-rg-qun">
-                                        <rect key="frame" x="10" y="20" width="394" height="0.0"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Accountable To God" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="73D-rg-qun">
+                                        <rect key="frame" x="10" y="20" width="394" height="29.333333333333329"/>
                                         <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="25"/>
                                         <color key="textColor" red="0.1333333333" green="0.32941177490000001" blue="0.5647059083" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WBU-Hq-PbR">
-                                        <rect key="frame" x="10" y="40" width="394" height="0.0"/>
-                                        <fontDescription key="fontDescription" name="HelveticaNeue-ThinItalic" family="Helvetica Neue" pointSize="18"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WBU-Hq-PbR">
+                                        <rect key="frame" x="10" y="69.333333333333329" width="394" height="150.33333333333337"/>
+                                        <string key="text">1 Peter 3:15  But sanctify Christ as Lord in your hearts, always being ready to make a defense to everyone who asks you to give an account for the hope that is in you, yet with gentleness and reverence</string>
+                                        <fontDescription key="fontDescription" name="HelveticaNeue-MediumItalic" family="Helvetica Neue" pointSize="18"/>
                                         <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UyX-K0-7Cy" userLabel="gray line view">
-                                        <rect key="frame" x="10" y="70" width="394" height="30"/>
+                                        <rect key="frame" x="10" y="249.66666666666669" width="394" height="30"/>
                                         <subviews>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="DividerLine2" translatesAutoresizingMaskIntoConstraints="NO" id="LPb-PK-FEi">
                                                 <rect key="frame" x="0.0" y="0.0" width="394" height="30"/>
@@ -383,9 +384,9 @@
                                         </constraints>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MYr-hY-kpX">
-                                        <rect key="frame" x="0.0" y="110" width="414" height="40"/>
+                                        <rect key="frame" x="0.0" y="289.66666666666669" width="414" height="40"/>
                                         <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SH0-ph-Rzv" userLabel="DevLabel">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SH0-ph-Rzv" userLabel="DevLabel">
                                                 <rect key="frame" x="20" y="20" width="374" height="0.0"/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="20"/>
@@ -766,7 +767,7 @@
                                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" alpha="0.60000002384185791" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="resources" translatesAutoresizingMaskIntoConstraints="NO" id="UzY-hJ-fsV">
                                                             <rect key="frame" x="0.0" y="3" width="394" height="105"/>
                                                         </imageView>
-                                                        <view alpha="0.40000000596046448" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zw7-lZ-fQJ">
+                                                        <view alpha="0.40000000596046448" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zw7-lZ-fQJ">
                                                             <rect key="frame" x="0.0" y="3" width="394" height="105"/>
                                                             <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         </view>
@@ -785,14 +786,13 @@
                                                     <constraints>
                                                         <constraint firstItem="LHW-h6-Q0j" firstAttribute="centerY" secondItem="4gj-6t-Ki0" secondAttribute="centerY" id="LjZ-1M-KPU"/>
                                                         <constraint firstItem="zw7-lZ-fQJ" firstAttribute="centerX" secondItem="4gj-6t-Ki0" secondAttribute="centerX" id="Ncw-Tj-DtQ"/>
-                                                        <constraint firstItem="zw7-lZ-fQJ" firstAttribute="centerY" secondItem="4gj-6t-Ki0" secondAttribute="centerY" id="O65-tP-zOt"/>
                                                         <constraint firstAttribute="trailing" secondItem="LHW-h6-Q0j" secondAttribute="trailing" constant="15" id="OEZ-V9-xn1"/>
+                                                        <constraint firstItem="zw7-lZ-fQJ" firstAttribute="centerY" secondItem="4gj-6t-Ki0" secondAttribute="centerY" id="XUE-d2-f3b"/>
                                                         <constraint firstItem="UI4-ZA-M5e" firstAttribute="centerX" secondItem="4gj-6t-Ki0" secondAttribute="centerX" id="ZbM-W2-iLl"/>
                                                         <constraint firstItem="zw7-lZ-fQJ" firstAttribute="width" secondItem="UzY-hJ-fsV" secondAttribute="width" id="dJs-Op-5OB"/>
                                                         <constraint firstItem="UzY-hJ-fsV" firstAttribute="leading" secondItem="4gj-6t-Ki0" secondAttribute="leading" id="e0U-9o-NlE"/>
                                                         <constraint firstItem="UzY-hJ-fsV" firstAttribute="top" secondItem="4gj-6t-Ki0" secondAttribute="top" constant="3" id="ext-Np-Vte"/>
                                                         <constraint firstAttribute="trailing" secondItem="UzY-hJ-fsV" secondAttribute="trailing" id="mAJ-BA-1wG"/>
-                                                        <constraint firstItem="zw7-lZ-fQJ" firstAttribute="height" secondItem="UzY-hJ-fsV" secondAttribute="height" id="nOr-ex-gB4"/>
                                                         <constraint firstAttribute="bottom" secondItem="UzY-hJ-fsV" secondAttribute="bottom" constant="3" id="o3x-3V-zbi"/>
                                                         <constraint firstItem="UI4-ZA-M5e" firstAttribute="centerY" secondItem="4gj-6t-Ki0" secondAttribute="centerY" id="x4k-pL-Lp5"/>
                                                     </constraints>
@@ -1361,7 +1361,7 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="SearchField" rowHeight="100" id="RPT-QG-WhZ" customClass="SearchTableViewCell" customModule="Abiding_Above" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="44.666666030883789" width="414" height="100"/>
+                                <rect key="frame" x="0.0" y="50" width="414" height="100"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="RPT-QG-WhZ" id="y49-Js-qjO">
                                     <rect key="frame" x="0.0" y="0.0" width="414" height="100"/>
@@ -1502,22 +1502,29 @@
                                         <color key="textColor" red="0.19215688110000001" green="0.32549020649999999" blue="0.49019610879999997" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" editable="NO" text="Click here to donate to Abiding Above Ministries" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="EuS-pl-o8p">
+                                        <rect key="frame" x="35.666666666666657" y="158.66666666666666" width="317" height="92"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <fontDescription key="fontDescription" name="HelveticaNeue-LightItalic" family="Helvetica Neue" pointSize="29"/>
+                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                        <dataDetectorType key="dataDetectorTypes" link="YES"/>
+                                    </textView>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="C6f-fL-8l4">
-                                        <rect key="frame" x="0.0" y="158.66666666666666" width="388" height="391.33333333333337"/>
+                                        <rect key="frame" x="0.0" y="270.66666666666674" width="388" height="391.33333333333326"/>
                                         <subviews>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" alpha="0.65000000000000002" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="giveHands" translatesAutoresizingMaskIntoConstraints="NO" id="DHp-no-sgw">
-                                                <rect key="frame" x="0.0" y="0.0" width="388" height="391.33333333333331"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="388" height="371.33333333333331"/>
                                             </imageView>
                                             <view alpha="0.40000000000000002" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IJG-bY-7VV">
-                                                <rect key="frame" x="0.0" y="0.0" width="388" height="391.33333333333331"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="388" height="371.33333333333331"/>
                                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             </view>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.25" translatesAutoresizingMaskIntoConstraints="NO" id="sh6-Ov-35s">
                                                 <rect key="frame" x="10" y="0.0" width="368" height="391.33333333333331"/>
                                                 <string key="text">Abiding Above Ministries is a faith based 501(c)3 non-profit organization. As a policy, Abiding Above Ministries, does not solicit funds for the organization, or for the personal needs of staff members.
 
-As God provides, Abiding Above Ministries seeks to glorify God by
-encouraging all people into a relationship with Jesus Christ, discipling them in spiritual growth, and equipping them to make disciples of the nations.</string>
+As God provides, Abiding Above Ministries seeks to glorify God by encouraging all people into a relationship with Jesus Christ, discipling them in spiritual growth, and equipping them to make disciples of the nations.</string>
                                                 <fontDescription key="fontDescription" name="HelveticaNeue-CondensedBold" family="Helvetica Neue" pointSize="20"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
@@ -1526,27 +1533,19 @@ encouraging all people into a relationship with Jesus Christ, discipling them in
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <constraints>
                                             <constraint firstItem="IJG-bY-7VV" firstAttribute="width" secondItem="DHp-no-sgw" secondAttribute="width" id="2pE-Tw-JUN"/>
-                                            <constraint firstItem="IJG-bY-7VV" firstAttribute="centerX" secondItem="C6f-fL-8l4" secondAttribute="centerX" id="730-9Y-CGf"/>
+                                            <constraint firstItem="IJG-bY-7VV" firstAttribute="centerX" secondItem="DHp-no-sgw" secondAttribute="centerX" id="5ag-XJ-Th8"/>
+                                            <constraint firstItem="IJG-bY-7VV" firstAttribute="centerY" secondItem="DHp-no-sgw" secondAttribute="centerY" id="DYT-ZZ-OPC"/>
                                             <constraint firstItem="DHp-no-sgw" firstAttribute="leading" secondItem="C6f-fL-8l4" secondAttribute="leading" id="Elw-PZ-kxs"/>
                                             <constraint firstItem="IJG-bY-7VV" firstAttribute="height" secondItem="DHp-no-sgw" secondAttribute="height" id="L9A-U7-TI3"/>
                                             <constraint firstAttribute="height" secondItem="sh6-Ov-35s" secondAttribute="height" id="QOs-7M-VrL"/>
-                                            <constraint firstAttribute="bottom" secondItem="DHp-no-sgw" secondAttribute="bottom" id="SEc-Xb-OF8"/>
+                                            <constraint firstAttribute="bottom" secondItem="DHp-no-sgw" secondAttribute="bottom" constant="20" id="SEc-Xb-OF8"/>
                                             <constraint firstAttribute="trailing" secondItem="sh6-Ov-35s" secondAttribute="trailing" constant="10" id="av2-sl-nTX"/>
-                                            <constraint firstItem="IJG-bY-7VV" firstAttribute="centerY" secondItem="C6f-fL-8l4" secondAttribute="centerY" id="hLT-ST-5Mw"/>
                                             <constraint firstItem="sh6-Ov-35s" firstAttribute="leading" secondItem="C6f-fL-8l4" secondAttribute="leading" constant="10" id="hf1-zk-djl"/>
                                             <constraint firstItem="sh6-Ov-35s" firstAttribute="top" secondItem="C6f-fL-8l4" secondAttribute="top" id="hjw-uj-G3f"/>
                                             <constraint firstItem="DHp-no-sgw" firstAttribute="top" secondItem="C6f-fL-8l4" secondAttribute="top" id="tB7-cG-cQo"/>
                                             <constraint firstAttribute="trailing" secondItem="DHp-no-sgw" secondAttribute="trailing" id="z7E-0d-GyV"/>
                                         </constraints>
                                     </view>
-                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" editable="NO" text="Click here to donate to Abiding Above Ministries" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="EuS-pl-o8p">
-                                        <rect key="frame" x="24.333333333333343" y="570" width="339.66666666666663" height="92"/>
-                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <fontDescription key="fontDescription" name="HelveticaNeue-LightItalic" family="Helvetica Neue" pointSize="16"/>
-                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                                        <dataDetectorType key="dataDetectorTypes" link="YES"/>
-                                    </textView>
                                 </subviews>
                                 <constraints>
                                     <constraint firstItem="C6f-fL-8l4" firstAttribute="width" secondItem="hPV-NJ-DgP" secondAttribute="width" id="D7P-Wb-Lzg"/>
@@ -1572,6 +1571,7 @@ encouraging all people into a relationship with Jesus Christ, discipling them in
                         <outlet property="donateHereTextView" destination="EuS-pl-o8p" id="a9y-ht-DSb"/>
                         <outlet property="donationStatement" destination="sh6-Ov-35s" id="TMw-7n-7ff"/>
                         <outlet property="donationStatementView" destination="C6f-fL-8l4" id="2dE-pu-t1w"/>
+                        <outlet property="logo" destination="nZf-qQ-ZBd" id="967-J3-Dc5"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="TXx-EZ-Reg" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -1610,12 +1610,12 @@ encouraging all people into a relationship with Jesus Christ, discipling them in
         <image name="DividerLine2" width="600" height="100"/>
         <image name="Newsletter button" width="76" height="42"/>
         <image name="bible" width="1000" height="667.33331298828125"/>
+        <image name="bookmark" catalog="system" width="110" height="128"/>
         <image name="bookmark" width="926.66668701171875" height="951"/>
-        <image name="bookmark" catalog="system" width="112" height="128"/>
-        <image name="chevron.right" catalog="system" width="96" height="128"/>
+        <image name="chevron.right" catalog="system" width="97" height="128"/>
         <image name="dailyDev" width="1299.6666259765625" height="1882.3333740234375"/>
         <image name="discipleshipSchool" width="1333.3333740234375" height="1000"/>
-        <image name="gearshape" catalog="system" width="128" height="121"/>
+        <image name="gearshape" catalog="system" width="128" height="123"/>
         <image name="giveHands" width="2000" height="1333.3333740234375"/>
         <image name="key" width="1166.6666259765625" height="916.66668701171875"/>
         <image name="logo" width="751.239990234375" height="504.75"/>
@@ -1628,7 +1628,7 @@ encouraging all people into a relationship with Jesus Christ, discipling them in
         <image name="spiritualGrowth" width="1216" height="1824"/>
         <image name="typewriter" width="1333" height="888.66668701171875"/>
         <systemColor name="labelColor">
-            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <color red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
