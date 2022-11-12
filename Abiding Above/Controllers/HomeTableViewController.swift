@@ -128,6 +128,7 @@ extension HomeTableViewController {
 
 // MARK: - VerseDelegate Methods
 
+
 extension HomeTableViewController: VerseDelegate {
     func verseReceived(verse: String, copyright: String) {
         DispatchQueue.main.async {
